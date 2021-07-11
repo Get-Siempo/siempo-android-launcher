@@ -1,11 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Siempo</string>
+    <string name="app_name">Focus Launcher</string>
 
     <!--<string name="format.battery" tools:ignore="UnusedResources">%1$s %2$d%%</string>
     <string name="format.signal" tools:ignore="UnusedResources">{fa-signal 12dp} %1$s {fa-wifi 12dp}</string>-->
 
     <string name="title_text" tools:ignore="UnusedResources">Text</string>
     <string name="title_note" tools:ignore="UnusedResources">Note</string>
+    <string name="launch_screen_logo_text">Focus\nLauncher</string>
 
     <string name="title_callLog" tools:ignore="UnusedResources">Call Log</string>
     <string name="title_voicemail" tools:ignore="UnusedResources">Voicemail</string>
@@ -13,13 +14,13 @@
     <string name="title_theme" tools:ignore="UnusedResources">Theme</string>
 
 
-    <string name="pinch_hint" >Pinch-to-zoom to adjust the wallpaper</string>
+    <string name="pinch_hint">Pinch-to-zoom to adjust the wallpaper</string>
     <string name="double_tap_hint">You can also double-tap to zoom</string>
 
     <string name="title_feedback">Feedback</string>
     <string name="title_faq">FAQ</string>
     <string name="title_suppressedNotifications">View Suppressed Notification</string>
-    <string name="title_siempoPermissions">Siempo Permissions</string>
+    <string name="title_siempoPermissions">Focus Launcher Permissions</string>
     <string name="title_siempoRestrictions">Restrictions</string>
     <string name="title_siempoLocation">Location</string>
     <string name="title_inbox" tools:ignore="UnusedResources">Google Inbox</string>
@@ -106,7 +107,7 @@
         <item>3</item>
     </string-array>
 
-    <string-array name="multi_select_list_preference_default_value" tools:ignore="UnusedResources" />
+    <string-array name="multi_select_list_preference_default_value" tools:ignore="UnusedResources"/>
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
 
@@ -189,20 +190,20 @@
     <string name="pref_about_phone">About phone</string>
     <string name="pref_system">System</string>
     <string name="str_phonesettings">Phone Settings</string>
-    <string name="str_siemposettings">Siempo Settings</string>
+    <string name="str_siemposettings">Focus Launcher Settings</string>
     <string name="str_keyboard_configuration">Always show the keyboard on the \nhome screen</string>
     <string name="phone_replace_regex">\-</string>
     <string name="missed_call">Missed call</string>
     <string name="phone">Phone</string>
-    <string name="msg_noti_service_dialog">Siempo Notification service is not enabled. Please allow Siempo to access notification service</string>
-    <string name="msg_overlay_settings">Siempo needs overlay permission enabled mandatorily.</string>
+    <string name="msg_noti_service_dialog">Focus Launcher Notification service is not enabled. Please allow Focus Launcher to access notification service</string>
+    <string name="msg_overlay_settings">Focus Launcher needs overlay permission enabled mandatorily.</string>
     <string name="open_with">Open With</string>
     <string name="just_once">Just Once</string>
     <string name="always">Always</string>
     <string name="okay">Okay</string>
     <string name="default_apps">Default Apps</string>
     <string name="clear_all">Clear All</string>
-    <string name="siempo_note">Siempo Note</string>
+    <string name="siempo_note">Focus Launcher Note</string>
 
 
     <string-array name="systemAppList">
@@ -233,8 +234,8 @@
     <string name="notificationAccess">Notification access</string>
     <string name="draw_overlay">Draw over other Apps</string>
     <string name="control_access_usage">Usage Access Settings</string>
-    <string name="permission_title">"Please enable the following permission(s) to allow the Siempo to work correctly:"</string>
-    <string name="permission_siempo_alpha_title">"Siempo is using following permissions\n"</string>
+    <string name="permission_title">"Please enable the following permission(s) to allow the Focus Launcher to work correctly:"</string>
+    <string name="permission_siempo_alpha_title">"Focus Launcher is using following permissions\n"</string>
     <string name="grant_all_to_proceed_text">Please grant all the permissions to proceed</string>
     <string name="runtime_permission_text">Please consider turn on permissions at Setting > Permission</string>
     <string name="permission_proceed_text">Press Continue to proceed</string>
@@ -244,7 +245,7 @@
     <string name="btn_next">Next</string>
     <string name="btn_done">Done</string>
     <string name="btn_got">Got it</string>
-    <string name="to_help_you_storage">"To help you understand your current phone habits, Siempo needs permission to store information on this device. We do not read your private files or collect information about files on your device."</string>
+    <string name="to_help_you_storage">"To help you understand your current phone habits, Focus Launcher needs permission to store information on this device. We do not read your private files or collect information about files on your device."</string>
     <string name="userid">UserId:</string>
     <string name="deliver_notifications">When do you want notifications?</string>
     <string name="individually_as_soon_as_they_arrive">Individually, as soon as they arrive</string>
@@ -265,14 +266,14 @@
 
     <!--Account Setting Section-->
 
-    <string name="lbl_purchaseSiempo">Purchase Siempo</string>
+    <string name="lbl_purchaseSiempo">Purchase Focus Launcher</string>
     <string name="lbl_updateEmail">Update email address</string>
     <string name="lbl_freeTrial">"Your free trial ends in 13 days.\nLearn more about pricing options."</string>
-    <string name="lbl_exitSiempo">Exit Siempo services</string>
-    <string name="lbl_updateEmailDescription">Siempo will never email you unless you request support or opt-in.</string>
+    <string name="lbl_exitSiempo">Exit Focus Launcher services</string>
+    <string name="lbl_updateEmailDescription">Focus Launcher will never email you unless you request support or opt-in.</string>
     <string name="lbl_switchSiempo">Switch to another home app</string>
     <string name="lbl_analytics">Share analytics &amp; diagnostics</string>
-    <string name="lbl_analytics_description">Help improve your Siempo experience by automatically sending analytics, diagnostics, and usage data to Siempo. </string>
+    <string name="lbl_analytics_description">Help improve your Focus Launcher experience by automatically sending analytics, diagnostics, and usage data to Focus Launcher. </string>
     <string name="lbl_analytics_description2">\nThe data you share is anonymous and aggregated with data from other users.  We use that data, for example, to recommend a healthy amount of phone use. \n\nTo learn more, please view our </string>
 
     <!--Update Email Section-->
@@ -288,7 +289,7 @@
     <string name="feedback">Send Feedback</string>
     <string name="terms_services">Terms of Service</string>
     <string name="version">Version</string>
-    <string name="feedback_email">feedback@siempo.co</string>
+    <string name="feedback_email">focuslauncher@gmail.com</string>
     <string name="error_email">Please enter a valid email address</string>
     <string name="feedback_title">Message received!</string>
     <string name="feedback_success_message">Thank you for your feedback! We read every message, and we try to respond to them as soon as we can. We\'re a small team, so please be patient with us.</string>
@@ -318,7 +319,7 @@
     <string name="close">CLOSE</string>
     <string name="next">NEXT</string>
 
-    <string name="faqlink">http://www.getsiempo.com/apps/android/beta/faq.htm</string>
+    <string name="faqlink">http://www.focuslauncher.io/faq</string>
     <string name="privacypolicy_link"><a href="">Privacy Policy</a></string>
     <string name="disable_intentions">Disable intentions</string>
     <string name="dark_theme">Dark theme</string>
@@ -404,7 +405,7 @@
     <string name="label_title">Title</string>
     <string name="label_note">Note</string>
     <string name="label_favorite">Favorite</string>
-    <string name="make_siempo_your_default_home_app">Make Siempo your default home app:</string>
+    <string name="make_siempo_your_default_home_app">Make Focus Launcher your default home app:</string>
     <string name="select">Select</string>
     <string name="select_your_prefered_home_app">Select your preferred Home app</string>
     <string name="tap_always" tools:ignore="TypographyQuotes">Tap \"Always\"</string>
@@ -477,16 +478,16 @@
     <string name="favorite_menu_select">Select as frequently used app</string>
     <string name="get_info_or_uninstall_app">Get info or uninstall app</string>
     <string name="msg_flage_save_dialog">You\'ve taken an important step towards reducing the use of apps that can make you feel bad when you overuse them.</string>
-    <string name="flag_first_time_install">When you flag an app, Siempo will gently discourage you from over-using it. We\'ve flagged some apps that most users say they want to use less.  You can change these flags now or later.</string>
+    <string name="flag_first_time_install">When you flag an app, Focus Launcher will gently discourage you from over-using it. We\'ve flagged some apps that most users say they want to use less.  You can change these flags now or later.</string>
     <string name="msg_flag_first_time">Most users report that the more apps they flag, the less they use their phones.  Flagging will make these apps just a bit harder to launch and use unintentionally.</string>
     <string name="msg_hide_icon_branding">Most users report that branded app logos entice them to spend more time on their phones than they intend to.</string>
     <string name="str_blank_validation_below">Taps apps below to move them into this section</string>
     <string name="str_blank_validation_above">Taps apps above to move them into this section</string>
     <string name="yes_unhide">YES, UNHIDE</string>
     <string name="are_you_sure">Are you sure?</string>
-    <string name="exiting_siempo">Exiting Siempo</string>
+    <string name="exiting_siempo">Exiting Focus Launcher</string>
     <string name="exit">EXIT</string>
-    <string name="exiting_siempo_msg">"Exiting does not impact your subscription status. To re-enable Siempo protections after exiting, launch the Siempo app at any time. "</string>
+    <string name="exiting_siempo_msg">"Exiting does not impact your subscription status. To re-enable Focus Launcher protections after exiting, launch the Focus Launcher app at any time. "</string>
     <string name="editing_tools">Editing tools</string>
     <string name="editing_frequently_apps">Editing frequently used apps</string>
     <string name="select_tools">Select Tools</string>
@@ -502,7 +503,7 @@
     <string name="atleast_one_fav_app">"Atleast one app will stay as favorite"</string>
     <string name="not_more_than_twelve_fav_app">Please unselect any of the apps from Frequently used apps section</string>
     <string name="find_app_send_message_or_save_note">Find app, send message, or save note</string>
-    <string name="msg_permission_denied">"If you reject this permission,you can not use Siempo\nPlease turn on permissions at [Setting] > [Permission]"</string>
+    <string name="msg_permission_denied">"If you reject this permission,you can not use Focus Launcher\nPlease turn on permissions at [Setting] > [Permission]"</string>
     <string name="msg_permission_denied1">"If you reject this permission,you can not use Tempo\nPlease turn on permissions at [Setting] > [Permission]"</string>
     <string name="no_app_found_or_no_relevant_app">No app found or no relevant app</string>
     <string name="not_now">Not Now</string>
@@ -523,16 +524,16 @@
     <string name="later_string">Later</string>
     <string name="setting_string">Settings</string>
     <string name="make_your_home_string">"\u2022  Make your homescreen distraction free\n\u2022  Schedule focus time without interuptions\n\u2022  Flag apps that you\'re prone to overuse\n\u2022  Tidy app menus and muted app icons"</string>
-    <string name="would_you_like_to">Would you like to make Siempo \nyour default Home app?
+    <string name="would_you_like_to">Would you like to make Focus Launcher \nyour default Home app?
 </string>
     <string name="welcome_to_tool">Welcome to healthier app menus!</string>
     <string name="from_this_tools">"From this <b>Tools Screen</b>, you can launch your most helpful apps.  Assign your preferred app to each tool.  Add, change, or rearrange tools as desired."</string>
     <string name="frequently_used_title">Frequently Used Apps</string>
     <string name="favorite_message">You can add any other non-distracting apps to this screen by long-pressing on an icon.</string>
     <string name="flagged_app_title">Flagged Apps</string>
-    <string name="flagged_message">"Here you'll find any apps that you have flagged for less use.  By default, Siempo scrambles the app positions each time you enter this screen."</string>
-    <string name="siempo_need_permission">"Siempo needs your permission"</string>
-    <string name="choose_how_minutes">Choose how many minutes you want to allow yourself to spend in flagged apps. With your permission, Siempo will gently encourage you take a short break after you reach that limit.</string>
+    <string name="flagged_message">"Here you'll find any apps that you have flagged for less use.  By default, Focus Launcher scrambles the app positions each time you enter this screen."</string>
+    <string name="siempo_need_permission">"Focus Launcher needs your permission"</string>
+    <string name="choose_how_minutes">Choose how many minutes you want to allow yourself to spend in flagged apps. With your permission, Focus Launcher will gently encourage you take a short break after you reach that limit.</string>
     <string name="to_enable_draw">To enable, on the next screen: tap on the\ntoggle, then tap on the back arrow.</string>
     <string name="launcher_text">On the next screen: \nTap the circle, then tap the back arrow.</string>
     <string name="permission_msg_enable_tempo">Tempo needs permission \nto perform these tasks:</string>
@@ -544,7 +545,7 @@
     <string name="update_background">Update background?</string>
     <string name="current_background">Current background</string>
     <string name="my_images">My images</string>
-    <string name="siempo_images">Siempo images</string>
+    <string name="siempo_images">Focus Launcher images</string>
     <string name="filter_apps">"Filter apps…"</string>
     <string name="no_apps">No apps match that input text</string>
     <string name="no_mattched_text">No apps match that input text</string>
@@ -554,16 +555,16 @@
     <string name="settings">Settings</string>
     <string name="wellness">Wellness</string>
     <string name="msg_internet">Please check internet connection!</string>
-    <string name="contribute_to_siempo">Contribute to Siempo</string>
-    <string name="thank_you_for_">Thank you for being part of our journey! \nAs a beta user, Siempo will be free for you for life, but you are always welcome to contribute to our mission, or <a href="https://github.com/Get-Siempo">help us build Siempo</a>.</string>
+    <string name="contribute_to_siempo">Contribute to Focus Launcher</string>
+    <string name="thank_you_for_">Thank you for being part of our journey! \nAs a beta user, Focus Launcher will be free for you for life, but you are always welcome to contribute to our mission, or <a href="https://github.com/focus-launcher/focus-launcher-android">help us build Focus Launcher</a>.</string>
 
     <string name="string_doubletap_title">Double tap controls</string>
     <string name="sleep">Sleep</string>
     <string name="message_sleep_mode">When Sleep mode is on, double tapping on any screen will make your device to go in sleep mode.</string>
     <string name="message_dnd_mode">When do not disturb is on, double tapping on any screen will make your device to go in DND mode.</string>
-    <string name="device_admin_not_enabled">Siempo is not marked as Device Administrator. Please check Security settings and enable it.</string>
-    <string name="admin_receiver_status_enabled">Siempo is added as Device Administrator</string>
-    <string name="admin_receiver_status_disabled">Siempo is removed from Device Administrators list</string>
+    <string name="device_admin_not_enabled">Focus Launcher is not marked as Device Administrator. Please check Security settings and enable it.</string>
+    <string name="admin_receiver_status_enabled">Focus Launcher is added as Device Administrator</string>
+    <string name="admin_receiver_status_disabled">Focus Launcher is removed from Device Administrators list</string>
     <string name="device_admin_description">Turns the screen off and locks your device with a double tap.</string>
 
     <string-array name="in_app_items_subscription">

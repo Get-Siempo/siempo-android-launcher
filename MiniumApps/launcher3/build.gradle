@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'com.android.library'
 //apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'io.fabric'
+//apply plugin: 'io.fabric'
 apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'com.google.firebase.firebase-perf'
 
@@ -76,6 +76,7 @@ android {
 }
 
 repositories {
+    mavenCentral()
     maven { url 'https://maven.fabric.io/public' }
     maven { url "https://jitpack.io" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
