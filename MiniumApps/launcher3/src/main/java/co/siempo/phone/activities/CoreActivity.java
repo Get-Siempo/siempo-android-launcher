@@ -176,7 +176,8 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
         downloadIntent.addAction("android.intent.action.DOWNLOAD_COMPLETE");
         registerReceiver(mDownloadReceiver, downloadIntent);
 
-        startAlarm();
+        // TODO: consider to remove the dialog
+//        startAlarm();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), new OnApplyWindowInsetsListener() {
             @Override
             public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
@@ -210,8 +211,8 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
             //cal.add(Calendar.HOUR, 24);
             cal.add(Calendar.MINUTE, 3);
             Intent intent = new Intent(this, ReminderService.class);
-            intent.putExtra("title","Welcome to Siempo! Thank you for your trust.");
-            intent.putExtra("body","Choose a custom background to make your experience more personal.");
+            intent.putExtra("title",getString(R.string.welcome_dialog_title));
+            intent.putExtra("body",getString(R.string.welcome_dialog_description));
             intent.putExtra("type","0");
             PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, 0);
             alarmManager.set(AlarmManager.RTC, cal.getTimeInMillis(), pendingIntent);

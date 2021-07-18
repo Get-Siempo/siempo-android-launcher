@@ -83,42 +83,6 @@ public class ActivityHelper {
         }
     }
 
-    public void openFeedback() {
-        try {
-            Intent emailIntent = new Intent(Intent.ACTION_VIEW);
-            if (BuildConfig.FLAVOR.equalsIgnoreCase(context.getString(R.string.alpha))) {
-                String strDeviceInfo = UIUtils.getDeviceInfo(context)
-                        + "\nAPP VERSION : " + "ALPHA-" + BuildConfig.VERSION_NAME;
-                Uri data = Uri.parse("mailto:feedback@siempo.co?subject=" + String.format("Feedback on app [%s]",
-                        "ALPHA-" + BuildConfig.VERSION_NAME) + "&body=" + strDeviceInfo);
-                emailIntent.setData(data);
-            } else if (BuildConfig.FLAVOR.equalsIgnoreCase(context.getString(R.string.beta))) {
-                String strDeviceInfo = UIUtils.getDeviceInfo(context)
-                        + "\nAPP VERSION : " + "BETA-" + BuildConfig.VERSION_NAME;
-                Uri data = Uri.parse("mailto:feedback@siempo.co?subject=" + String.format("Feedback on app [%s]",
-                        "BETA-" + BuildConfig.VERSION_NAME) + "&body=" + strDeviceInfo);
-                emailIntent.setData(data);
-            }
-            emailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            final PackageManager pm = context.getPackageManager();
-            final List<ResolveInfo> matches = pm.queryIntentActivities(emailIntent, 0);
-            ResolveInfo best = null;
-            for (final ResolveInfo info : matches)
-                if (info.activityInfo.packageName.endsWith(".gm") ||
-                        info.activityInfo.name.toLowerCase().contains("gmail"))
-                    best = info;
-            if (best != null) {
-                emailIntent.setClassName(best.activityInfo.packageName, best.activityInfo.name);
-                context.startActivity(emailIntent);
-            } else {
-                UIUtils.alert(context, context.getString(R.string.no_emailapp_msg));
-            }
-        } catch (Exception e) {
-            CoreApplication.getInstance().logException(e);
-            UIUtils.alert(context, context.getString(R.string.no_emailapp_msg));
-        }
-    }
-
 
     public void openBecomeATester() {
         final String appPackageName = context.getPackageName(); // getPackageName() from Context or Activity object

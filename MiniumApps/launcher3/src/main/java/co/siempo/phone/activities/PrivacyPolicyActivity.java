@@ -36,7 +36,7 @@ public class PrivacyPolicyActivity extends CoreActivity {
         try {
             web_Faq = findViewById(R.id.web_Faq);
             web_Faq.getSettings().setJavaScriptEnabled(true);
-            web_Faq.loadUrl("http://www.getsiempo.com/app/pp.html");
+            web_Faq.loadUrl(getString(R.string.url_privicey_policy));
             web_Faq.setBackgroundColor(Color.TRANSPARENT);
         } catch (Exception e) {
             e.printStackTrace();

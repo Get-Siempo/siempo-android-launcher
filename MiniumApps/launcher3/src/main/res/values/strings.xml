@@ -49,7 +49,11 @@
     <string name="nointernetconnection">No internet connection available</string>
 
 
+
+    <string name="welcome_dialog_title">"Welcome to Focus Launcher!! Thank you for your trust."</string>
+    <string name="welcome_dialog_description">Choose a custom background to make your experience more personal.</string>
     <!-- Strings related to Settings -->
+
 
     <!-- Example General settings -->
     <string name="pref_header_general" tools:ignore="UnusedResources">General</string>
@@ -58,6 +62,10 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact
         based on your message history
     </string>
+
+    <!-- Dashbaord -->
+    <string name="dashbaord_popup_new_alpha_available">"New alpha version found! Would you like to update Focus launcher?"</string>
+    <string name="dashboard_pupup_new_beta_available">"New beta version found! Would you like to update Focus launcher?"</string>
 
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>
@@ -289,10 +297,12 @@
     <string name="feedback">Send Feedback</string>
     <string name="terms_services">Terms of Service</string>
     <string name="version">Version</string>
-    <string name="feedback_email">focuslauncher@gmail.com</string>
     <string name="error_email">Please enter a valid email address</string>
     <string name="feedback_title">Message received!</string>
     <string name="feedback_success_message">Thank you for your feedback! We read every message, and we try to respond to them as soon as we can. We\'re a small team, so please be patient with us.</string>
+    <string name="feedback_email_sent">Thanks for your feedback!  Focus launcher support ID: </string>
+    <string name="app_version_alpha">Focus launcher version : ALPHA-</string>
+    <string name="app_version_beta">Focus launcher version : BETA-</string>
 
 
     <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>

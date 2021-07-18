@@ -40,7 +40,7 @@ public class TermsOfServicesFragment extends CoreFragment {
         try {
             web_Services.setHorizontalScrollBarEnabled(false);
             web_Services.getSettings().setJavaScriptEnabled(true);
-            web_Services.loadUrl("http://www.getsiempo.com/app/tos.html");
+            web_Services.loadUrl(getString(R.string.url_terms_of_services));
 
             web_Services.setWebViewClient(new WebViewClient() {
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {

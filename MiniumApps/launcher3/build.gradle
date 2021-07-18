@@ -15,10 +15,10 @@ android {
     }
     defaultConfig {
         applicationId "co.siempo.phone"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 26
         multiDexEnabled true
-        versionCode 12312
+        versionCode 1
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         defaultConfig {
             vectorDrawables.useSupportLibrary = true
@@ -47,17 +47,15 @@ android {
 
 
     }
-    flavorDimensions "Siempo"
+    flavorDimensions "type"
     productFlavors {
         alpha {
-            dimension "Siempo"
-            versionCode 12301
-            versionName "${0}.${0}.${12}.${3}"
+            dimension "type"
+            versionName "1.0.0"
         }
         beta {
-            dimension "Siempo"
-            versionCode 12316
-            versionName "${0}.${1}.${7}.${0}"
+            dimension "type"
+            versionName "1.0.0"
         }
     }
 
