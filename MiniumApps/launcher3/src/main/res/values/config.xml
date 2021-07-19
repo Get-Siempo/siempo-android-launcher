@@ -4,5 +4,12 @@
     <!-- Notosans fonts -->
     <string name="fonts.noto.sans.regular" translatable="false">fonts/notosans-unhinted/NotoSans-Regular.ttf</string>
 
+
+    <!-- SUPPORT -->
+    <string name="url_privicey_policy" translatable="false">http://focuslauncher.io/privacy/</string>
+    <string name="url_terms_of_services" translatable="false">http://focuslauncher.io/terms/</string>
+    <string name="feedback_email" translatable="false">focuslauncher@gmail.com</string>
+
+
     <item name="mainView" type="id" />
 </resources>

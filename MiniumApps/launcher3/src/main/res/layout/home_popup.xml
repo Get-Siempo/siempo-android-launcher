@@ -19,17 +19,15 @@
             android:orientation="vertical"
             tools:ignore="UselessParent">
 
-
-
-
             <LinearLayout
                 android:id="@+id/linTempo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/dp_15"
                 android:paddingLeft="20dp"
+                android:paddingTop="@dimen/dp_15"
                 android:paddingRight="25dp"
-                android:paddingTop="@dimen/dp_15">
+                android:paddingBottom="@dimen/dp_15"
+                android:visibility="gone">
 
                 <!--<ImageView-->
                 <!--android:layout_width="28dp"-->
@@ -50,16 +48,15 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:id="@+id/linDistractingApp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/dp_15"
                 android:paddingLeft="20dp"
-                android:visibility="gone"
+                android:paddingTop="@dimen/dp_15"
                 android:paddingRight="25dp"
-                android:paddingTop="@dimen/dp_15">
+                android:paddingBottom="@dimen/dp_15"
+                android:visibility="gone">
 
                 <co.siempo.phone.customviews.RobotoMediumTextView
                     android:layout_width="wrap_content"
@@ -77,11 +74,11 @@
                 android:id="@+id/linWallpaper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/dp_15"
                 android:paddingLeft="20dp"
+                android:paddingTop="@dimen/dp_15"
                 android:paddingRight="25dp"
-                android:visibility="gone"
-                android:paddingTop="@dimen/dp_15">
+                android:paddingBottom="@dimen/dp_15"
+                android:visibility="gone">
 
                 <co.siempo.phone.customviews.RobotoMediumTextView
                     android:layout_width="wrap_content"
@@ -100,10 +97,10 @@
                 android:id="@+id/linSettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/dp_15"
                 android:paddingLeft="20dp"
+                android:paddingTop="@dimen/dp_15"
                 android:paddingRight="25dp"
-                android:paddingTop="@dimen/dp_15">
+                android:paddingBottom="@dimen/dp_15">
 
                 <!--<ImageView-->
                 <!--android:layout_width="30dp"-->
@@ -127,11 +124,10 @@
                 android:id="@+id/linHelp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp_10"
-                android:paddingBottom="@dimen/dp_15"
                 android:paddingLeft="20dp"
+                android:paddingTop="@dimen/dp_15"
                 android:paddingRight="25dp"
-                android:paddingTop="@dimen/dp_15">
+                android:paddingBottom="@dimen/dp_15">
 
                 <!--<ImageView-->
                 <!--android:layout_width="30dp"-->
@@ -156,16 +152,10 @@
                 android:id="@+id/linContribute"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/dp_15"
                 android:paddingLeft="20dp"
                 android:paddingRight="25dp"
-                >
-
-                <!--<ImageView-->
-                <!--android:layout_width="28dp"-->
-                <!--android:layout_height="30dp"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:background="@drawable/ic_tempo_dailog" />-->
+                android:paddingBottom="@dimen/dp_15"
+                android:visibility="gone">
 
                 <co.siempo.phone.customviews.RobotoMediumTextView
                     android:layout_width="wrap_content"
@@ -173,10 +163,12 @@
                     android:layout_gravity="center_vertical"
                     android:drawableLeft="@drawable/ic_vector_heart"
                     android:drawablePadding="@dimen/dp_10"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="Contribute"
                     android:textColor="?attr/txt_content_title"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_16"
+                    android:visibility="gone" />
             </LinearLayout>
 
         </LinearLayout>

@@ -281,7 +281,7 @@ public class AlarmService extends IntentService {
         Bitmap bitmap = CoreApplication.getInstance().getBitmapFromMemCache(packageName);
         PendingIntent contentIntent = PackageUtil.getPendingIntent(context, notificationSms.get(0));
         return new NotificationCompat.Builder(context, applicationName)
-                .setSmallIcon(R.drawable.siempo_notification_icon)
+                .setSmallIcon(R.drawable.ic_focus_launcher_notification)
                 .setContentTitle(applicationName)
                 .setContentIntent(contentIntent)
                 .setContentText(notificationSms.size() == 1 ? "1 new message" : notificationSms.size() + " new messages")
@@ -327,7 +327,7 @@ public class AlarmService extends IntentService {
         NotificationCompat.Builder newMessageNotification = new NotificationCompat.Builder(context, applicationName)
                 .setAutoCancel(true)
                 .setWhen(tableNotificationSms.get_date().getTime())
-                .setSmallIcon(R.drawable.siempo_notification_icon)
+                .setSmallIcon(R.drawable.ic_focus_launcher_notification)
                 .setPriority(priority)
                 .setContentIntent(contentIntent)
                 .setCustomContentView(collapsedViews)
@@ -378,7 +378,7 @@ public class AlarmService extends IntentService {
             collapsedViews.setImageViewBitmap(R.id.big_icon, bitmapApplication);
             collapsedViews.setTextViewText(R.id.timestamp, DateUtils.formatDateTime(this, notificationSms.get(0).get_date().getTime(), DateUtils.FORMAT_SHOW_TIME));
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "")
-                    .setSmallIcon(R.drawable.siempo_notification_icon)
+                    .setSmallIcon(R.drawable.ic_focus_launcher_notification)
                     .setContentTitle("")
                     .setPriority(priority)
                     .setContentText("")
@@ -401,7 +401,7 @@ public class AlarmService extends IntentService {
             PendingIntent contentIntent = PackageUtil.getPendingIntent(context, notificationSms.get(0));
 
             Notification newMessageNotification = new NotificationCompat.Builder(context, applicationName)
-                    .setSmallIcon(R.drawable.siempo_notification_icon)
+                    .setSmallIcon(R.drawable.ic_focus_launcher_notification)
                     .setContentTitle(applicationName)
                     .setContentText(notificationSms.size() + " new messages")
                     .setLargeIcon(bitmapApplication)

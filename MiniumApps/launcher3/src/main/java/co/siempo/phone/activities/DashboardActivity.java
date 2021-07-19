@@ -258,15 +258,14 @@ public class DashboardActivity extends CoreActivity {
 
         getColorList();
 
-        if(PrefSiempo.getInstance(DashboardActivity.this).read(PrefSiempo.DEFAULT_SCREEN_OVERLAY, false)) {
+        if (PrefSiempo.getInstance(DashboardActivity.this).read(PrefSiempo.DEFAULT_SCREEN_OVERLAY, false)) {
             Intent command = new Intent(DashboardActivity.this, ScreenFilterService.class);
             command.putExtra(ScreenFilterService.BUNDLE_KEY_COMMAND, 0);
             startService(command);
         }
     }
 
-    private void getColorList()
-    {
+    private void getColorList() {
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = getTheme();
         theme.resolveAttribute(R.attr.junk_top, typedValue, true);
@@ -295,9 +294,8 @@ public class DashboardActivity extends CoreActivity {
         return result;
     }
 
-    public void changeLayoutBackground(int color)
-    {
-        Log.e("image","image "+ PrefSiempo.getInstance(this).read(PrefSiempo.DEFAULT_BAG, ""));
+    public void changeLayoutBackground(int color) {
+        Log.e("image", "image " + PrefSiempo.getInstance(this).read(PrefSiempo.DEFAULT_BAG, ""));
         if (color == -1) {
             try {
                 String filePath = PrefSiempo.getInstance(this).read(PrefSiempo
@@ -344,7 +342,6 @@ public class DashboardActivity extends CoreActivity {
 
         AppUtils.notificationBarManaged(this, linMain);
     }
-
 
 
     private void setBackground() {
@@ -415,9 +412,10 @@ public class DashboardActivity extends CoreActivity {
             private float pointX;
             private float pointY;
             private int tolerance = 50;
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getAction()) {
+                switch (event.getAction()) {
                     case MotionEvent.ACTION_MOVE:
                         return false; //This is important, if you return TRUE the action of swipe will not take place.
                     case MotionEvent.ACTION_DOWN:
@@ -456,8 +454,7 @@ public class DashboardActivity extends CoreActivity {
 
             @Override
             public void onPageSelected(int i) {
-                if(i == 1)
-                {
+                if (i == 1) {
                     AppUtils.notificationBarManaged(DashboardActivity.this, null);
                     AppUtils.statusbarColor0(DashboardActivity.this, 1);
                 }
@@ -652,7 +649,9 @@ public class DashboardActivity extends CoreActivity {
     private void showUpdateDialog(String str) {
         NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
         if (activeNetwork != null) { // connected to the internet
-            UIUtils.confirmWithCancel(this, "", str.equalsIgnoreCase(CheckVersionEvent.ALPHA) ? "New alpha version found! Would you like to update Siempo?" : "New beta version found! Would you like to update Siempo?", new DialogInterface.OnClickListener() {
+            UIUtils.confirmWithCancel(this, "", str.equalsIgnoreCase(CheckVersionEvent.ALPHA)
+                    ? getString(R.string.dashbaord_popup_new_alpha_available)
+                    : getString(R.string.dashboard_pupup_new_beta_available), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if (which == DialogInterface.BUTTON_POSITIVE) {

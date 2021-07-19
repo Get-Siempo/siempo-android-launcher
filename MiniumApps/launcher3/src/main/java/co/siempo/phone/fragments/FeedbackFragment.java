@@ -37,10 +37,6 @@ import co.siempo.phone.utils.PrefSiempo;
 import co.siempo.phone.utils.SendMail;
 import co.siempo.phone.utils.UIUtils;
 
-/**
- * This fragment is use to send feedback to feedback@siempo.co mail
- */
-
 @EFragment(R.layout.fragment_feedback)
 public class FeedbackFragment extends CoreFragment {
 
@@ -125,7 +121,7 @@ public class FeedbackFragment extends CoreFragment {
 
 
                             //Creating SendMail object
-                            SendMail sm = new SendMail(getActivity(), getActivity().getResources().getString(R.string.feedback_email), "Thanks for your feedback!  Siempo support ID: " + CoreApplication.getInstance().getDeviceId(), body);
+                            SendMail sm = new SendMail(getActivity(), getActivity().getResources().getString(R.string.feedback_email), getString(R.string.feedback_success_message) + CoreApplication.getInstance().getDeviceId(), body);
 
                             //Executing sendmail to send email
                             sm.execute();

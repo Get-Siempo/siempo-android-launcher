@@ -110,9 +110,9 @@ public class ScreenFilterPresenter implements OrientationChangeReceiver.OnOrient
 //                shadesActivityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         mNotificationBuilder = new Notification.Builder(mContext);
-        mNotificationBuilder.setSmallIcon(R.drawable.siempo_logo)
+        mNotificationBuilder.setSmallIcon(R.drawable.siempo_notification_icon)
                 .setContentTitle(title)
-                .setContentText("Siempo with screen covers is running!!!")
+                .setContentText("Focus launcher with screen covers is running!!!")
                 .setColor(0xFF91a7ff)
                 .setPriority(Notification.PRIORITY_MIN);
 

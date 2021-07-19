@@ -24,7 +24,7 @@
             android:layout_height="18.2dp"
             android:layout_alignBottom="@id/big_icon"
             android:layout_alignRight="@id/big_icon"
-            android:src="@drawable/siempo_notification_icon" />
+            android:src="@drawable/ic_focus_launcher_notification" />
 
     </RelativeLayout>
 

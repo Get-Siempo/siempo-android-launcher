@@ -28,52 +28,9 @@
                 >
 
                 <RelativeLayout
-                    android:id="@+id/relPurchaseSiempo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="50dp"
-                    android:visibility="gone"
-                    tools:ignore="RtlSymmetry">
-
-
-                    <co.siempo.phone.customviews.RobotoRegularTextView
-                        android:id="@+id/txtPurchaseSiempo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginTop="8dp"
-                        android:lineSpacingExtra="5sp"
-                        android:paddingBottom="2dp"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:paddingTop="4dp"
-                        android:text="@string/lbl_purchaseSiempo"
-                        android:textSize="16sp"
-                        />
-
-                    <co.siempo.phone.customviews.RobotoRegularTextView
-                        android:id="@+id/txtPurchaseSiempoDescription"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/txtPurchaseSiempo"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="60dp"
-                        android:lineSpacingExtra="4sp"
-                        android:paddingBottom="4dp"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:paddingTop="2dp"
-                        android:text="@string/lbl_freeTrial"
-                        android:textSize="14sp"
-                        />
-                </RelativeLayout>
-
-                <RelativeLayout
                     android:id="@+id/relUpdateEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/relPurchaseSiempo"
                     android:paddingLeft="50dp"
                     tools:ignore="RtlSymmetry">
 
