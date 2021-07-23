@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'com.android.library'
 //apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'io.fabric'
+//apply plugin: 'io.fabric'
 apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'com.google.firebase.firebase-perf'
 
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 29
 
     lintOptions {
         disable 'GoogleAppIndexingApiWarning', 'GradleCompatible', 'IconDensities', 'Registered', 'MissingTranslation', 'SetTextI18n', 'RtlHardcoded', 'SelectableText', 'PermissionImpliesUnsupportedHardware', 'TypographyFractions', 'TypographyQuotes', 'InvalidPackage'
@@ -15,10 +15,10 @@ android {
     }
     defaultConfig {
         applicationId "co.siempo.phone"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 29
         multiDexEnabled true
-        versionCode 12312
+        versionCode 1
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         defaultConfig {
             vectorDrawables.useSupportLibrary = true
@@ -47,17 +47,15 @@ android {
 
 
     }
-    flavorDimensions "Siempo"
+    flavorDimensions "type"
     productFlavors {
         alpha {
-            dimension "Siempo"
-            versionCode 12301
-            versionName "${0}.${0}.${12}.${3}"
+            dimension "type"
+            versionName "1.0.0"
         }
         beta {
-            dimension "Siempo"
-            versionCode 12316
-            versionName "${0}.${1}.${7}.${0}"
+            dimension "type"
+            versionName "1.0.0"
         }
     }
 
@@ -76,6 +74,7 @@ android {
 }
 
 repositories {
+    mavenCentral()
     maven { url 'https://maven.fabric.io/public' }
     maven { url "https://jitpack.io" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }

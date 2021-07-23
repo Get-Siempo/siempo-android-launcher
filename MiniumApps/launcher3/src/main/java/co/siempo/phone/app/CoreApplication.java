@@ -308,11 +308,11 @@ public abstract class CoreApplication extends MultiDexApplication {
         setRandomize(PrefSiempo.getInstance(sInstance).read(PrefSiempo.IS_RANDOMIZE_JUNKFOOD, true));
 
 
-        /**
-         * Fetch Category App List
-         */
-        Intent intent = new Intent(this, CategoriesApp.class);
-        startService(intent);
+//        /**
+//         * Fetch Category App List
+//         */
+//        Intent intent = new Intent(this, CategoriesApp.class);
+//        startService(intent);
 
     }
 

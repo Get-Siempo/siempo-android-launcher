@@ -51,6 +51,7 @@ import co.siempo.phone.helper.FirebaseHelper;
 import co.siempo.phone.log.Tracer;
 import co.siempo.phone.receivers.PhoneCallReceiver;
 import co.siempo.phone.utils.NotificationUtility;
+import co.siempo.phone.utils.NotificationUtils;
 import co.siempo.phone.utils.PackageUtil;
 import co.siempo.phone.utils.PrefSiempo;
 import co.siempo.phone.utils.UIUtils;
@@ -77,6 +78,7 @@ public class SiempoNotificationListener extends NotificationListenerService {
     Context context;
     ArrayList<String> enableNotificationList = new ArrayList<>();
     Set<String> blockedAppList = new HashSet<>();
+    NotificationUtils notificationUtils;
     int volumeLevel = 1;
 
     CountDownTimer countDownTimer;
@@ -107,14 +109,19 @@ public class SiempoNotificationListener extends NotificationListenerService {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Notification.Builder builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
-                    .setContentTitle(getString(R.string.app_name))
-                    .setContentText("")
-                    .setPriority(Notification.PRIORITY_LOW)
-                    .setAutoCancel(true);
-            Notification notification = builder.build();
-            startForeground(Constants.NOTIFICIONLISTENER_SERVICE_ID, notification);
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                Notification.Builder builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
+                        .setContentTitle(getString(R.string.app_name))
+                        .setContentText("")
+                        .setPriority(Notification.PRIORITY_LOW)
+                        .setAutoCancel(true);
+                Notification notification = builder.build();
+                notificationUtils.createChannels();
+                startForeground(Constants.NOTIFICIONLISTENER_SERVICE_ID, notification);
+            }
+        } catch (Throwable e) {
+            Log.e("Notifications", "Couldn't start SiempoNotificationListener foreground", e);
         }
     }
 
