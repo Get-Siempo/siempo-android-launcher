@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:padding="16dp"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <co.siempo.phone.customviews.RobotoRegularTextView
                 android:id="@+id/txtContribute"

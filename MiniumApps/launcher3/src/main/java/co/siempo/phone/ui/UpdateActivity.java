@@ -18,6 +18,7 @@ import static android.view.View.GONE;
 @EActivity(R.layout.activity_update)
 public class UpdateActivity extends CoreActivity {
 
+    // TODO: [REBRANDING]
     String HOME_PAGE = "https://play.google.com/apps/testing/co.siempo.phone";
 
     @ViewById

@@ -182,7 +182,7 @@ public class PackageUtil {
                     String strChannelName = CoreApplication.getInstance().getListApplicationName().get(packageName);
                     Bitmap bitmap = CoreApplication.getInstance().getBitmapFromMemCache(packageName);
                     Notification newMessageNotification = new NotificationCompat.Builder(context, strChannelName)
-                            .setSmallIcon(R.drawable.siempo_notification_icon)
+                            .setSmallIcon(R.drawable.ic_focus_launcher_notification)
                             .setContentTitle(strChannelName)
                             .setContentText("")
                             .setLargeIcon(bitmap)
@@ -200,7 +200,7 @@ public class PackageUtil {
                             String strChannelName = CoreApplication.getInstance().getListApplicationName().get(packageName);
                             Bitmap bitmap = CoreApplication.getInstance().getBitmapFromMemCache(packageName);
                             Notification newMessageNotification = new NotificationCompat.Builder(context, strChannelName)
-                                    .setSmallIcon(R.drawable.siempo_notification_icon)
+                                    .setSmallIcon(R.drawable.ic_focus_launcher_notification)
                                     .setContentTitle(strChannelName)
                                     .setContentText("")
                                     .setLargeIcon(bitmap)
@@ -337,7 +337,7 @@ public class PackageUtil {
         b.setAutoCancel(true)
                 .setGroup(applicationNameFromPackageName)
                 .setWhen(notification.get_date().getTime())
-                .setSmallIcon(R.drawable.siempo_notification_icon)
+                .setSmallIcon(R.drawable.ic_focus_launcher_notification)
                 .setPriority(priority)
                 .setContentTitle(title)
                 .setContentText(notification.get_message())
@@ -410,7 +410,7 @@ public class PackageUtil {
                         .setContentTitle(strChannelName)
                         .setContentText(notificationSms.size() + " New message")
                         .setLargeIcon(bitmap)
-                        .setSmallIcon(R.drawable.siempo_notification_icon)
+                        .setSmallIcon(R.drawable.ic_focus_launcher_notification)
                         .setGroupSummary(false)
                         .setDefaults(Notification.DEFAULT_LIGHTS)
                         .setGroup(strChannelName)
@@ -454,7 +454,7 @@ public class PackageUtil {
                         .setContentTitle(strChannelName)
                         .setContentText(notificationSms.size() + " New message")
                         .setLargeIcon(bitmap)
-                        .setSmallIcon(R.drawable.siempo_notification_icon)
+                        .setSmallIcon(R.drawable.ic_focus_launcher_notification)
                         .setGroupSummary(true)
                         .setDefaults(Notification.DEFAULT_LIGHTS)
                         .setGroup(strChannelName)

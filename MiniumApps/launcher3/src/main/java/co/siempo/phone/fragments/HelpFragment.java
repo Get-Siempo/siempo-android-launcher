@@ -104,9 +104,9 @@ public class HelpFragment extends Fragment implements View.OnClickListener {
 
         String version = "";
         if (BuildConfig.FLAVOR.equalsIgnoreCase(getActivity().getString(R.string.alpha))) {
-            version = "Siempo version : ALPHA-" + BuildConfig.VERSION_NAME;
+            version = getString(R.string.app_version_alpha) + BuildConfig.VERSION_NAME;
         } else if (BuildConfig.FLAVOR.equalsIgnoreCase(getActivity().getString(R.string.beta))) {
-            version = "Siempo version : BETA-" + BuildConfig.VERSION_NAME;
+            version = getString(R.string.app_version_beta) + BuildConfig.VERSION_NAME;
         }
         txtVersionValue.setText("" + version);
 
@@ -117,7 +117,7 @@ public class HelpFragment extends Fragment implements View.OnClickListener {
     void txtSendFeedback() {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         String uriText = String.format("mailto:%s?subject=%s&body=%s",
-                "feedback@siempo.co", Uri.encode("Feedback"),
+                getString(R.string.feedback_email), Uri.encode("Feedback"),
                 Uri.encode(DeviceUtil.getDeviceInfo()));
         Uri uri = Uri.parse(uriText);
         intent.setData(uri);
@@ -271,21 +271,24 @@ public class HelpFragment extends Fragment implements View.OnClickListener {
                         .getActiveNetworkInfo();
             }
             if (activeNetwork != null) {
-                UIUtils.confirmWithCancel(mActivity, "", str.equalsIgnoreCase(CheckVersionEvent.ALPHA) ? "New alpha version found! Would you like to update Siempo?" : "New beta version found! Would you like to update Siempo?", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (which == DialogInterface.BUTTON_POSITIVE) {
-                            PrefSiempo.getInstance(mActivity).write
-                                    (PrefSiempo
-                                            .UPDATE_PROMPT, false);
-                            new ActivityHelper(mActivity).openBecomeATester();
-                        }
-                    }
-                }, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
+                UIUtils.confirmWithCancel(mActivity, "", str.equalsIgnoreCase(CheckVersionEvent.ALPHA)
+                                ? getString(R.string.dashbaord_popup_new_alpha_available)
+                                : getString(R.string.dashboard_pupup_new_beta_available),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (which == DialogInterface.BUTTON_POSITIVE) {
+                                    PrefSiempo.getInstance(mActivity).write
+                                            (PrefSiempo
+                                                    .UPDATE_PROMPT, false);
+                                    new ActivityHelper(mActivity).openBecomeATester();
+                                }
+                            }
+                        }, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
 
             } else {
                 Log.d(TAG, getString(R.string.nointernetconnection));
