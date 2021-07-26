@@ -599,9 +599,9 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
 
                     if (uri != null && !TextUtils.isEmpty(uri.toString())) {
 
-                        if (uri.toString().contains("com.google.android.apps.photos.contentprovider")) {
-                            return;
-                        }
+//                        if (uri.toString().contains("com.google.android.apps.photos.contentprovider")) {
+//                            return;
+//                        }
 
                         if (uri.toString().contains("/storage")) {
                             String[] storagepath = uri.toString().split("/storage");

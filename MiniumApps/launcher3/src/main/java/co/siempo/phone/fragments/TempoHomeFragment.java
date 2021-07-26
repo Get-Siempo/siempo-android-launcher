@@ -11,6 +11,7 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
@@ -383,74 +384,79 @@ public class TempoHomeFragment extends CoreFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Intention screen Wallpaper selection
         if (requestCode == 10 || requestCode == 7) {
-            switch (requestCode) {
-                case 10:
-                    if (resultCode == Activity.RESULT_OK) {
-                        Uri uri = data.getData();
+            try {
+                switch (requestCode) {
+                    case 10:
+                        if (resultCode == Activity.RESULT_OK) {
+                            Uri uri = data.getData();
 
-                        if (uri != null && !TextUtils.isEmpty(uri.toString())) {
+                            if (uri != null && !TextUtils.isEmpty(uri.toString())) {
+// For what reason this thing is here?
+//                                if (uri.toString().contains("com.google.android.apps.photos.contentprovider")) {
+//                                    return;
+//                                }
 
-                            if (uri.toString().contains("com.google.android.apps.photos.contentprovider")) {
-                                return;
-                            }
-
-                            if (uri.toString().contains("/storage")) {
-                                String[] storagepath = uri.toString().split("/storage");
-                                if (storagepath.length > 1) {
-                                    String filePath = "/storage" + storagepath[1];
-                                    Intent mUpdateBackgroundIntent = new Intent(getActivity(), UpdateBackgroundActivity.class);
-                                    mUpdateBackgroundIntent.putExtra("imageUri", filePath);
-                                    startActivityForResult(mUpdateBackgroundIntent, 3);
-                                }
-                            } else {
-                                String id = uri.getLastPathSegment();
-
-                                if (!TextUtils.isEmpty(id) && uri != null) {
-
-                                    try {
-                                        InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);
-                                        File file = new File(getActivity().getCacheDir(), id);
-                                        writeFile(inputStream, file);
-                                        String filePath = file.getAbsolutePath();
-
-                                        if (filePath.contains("raw:")) {
-                                            String[] downloadPath = filePath.split("raw:");
-                                            if (downloadPath.length > 1) {
-                                                filePath = downloadPath[1];
-                                            }
-                                        }
-
+                                if (uri.toString().contains("/storage")) {
+                                    String[] storagepath = uri.toString().split("/storage");
+                                    if (storagepath.length > 1) {
+                                        String filePath = "/storage" + storagepath[1];
                                         Intent mUpdateBackgroundIntent = new Intent(getActivity(), UpdateBackgroundActivity.class);
                                         mUpdateBackgroundIntent.putExtra("imageUri", filePath);
                                         startActivityForResult(mUpdateBackgroundIntent, 3);
+                                    }
+                                } else {
+                                    String id = uri.getLastPathSegment();
 
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
+                                    if (!TextUtils.isEmpty(id) && uri != null) {
+
+                                        try {
+                                            InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);
+                                            File file = new File(getActivity().getCacheDir(), id);
+                                            writeFile(inputStream, file);
+                                            String filePath = file.getAbsolutePath();
+
+                                            if (filePath.contains("raw:")) {
+                                                String[] downloadPath = filePath.split("raw:");
+                                                if (downloadPath.length > 1) {
+                                                    filePath = downloadPath[1];
+                                                }
+                                            }
+
+                                            Intent mUpdateBackgroundIntent = new Intent(getActivity(), UpdateBackgroundActivity.class);
+                                            mUpdateBackgroundIntent.putExtra("imageUri", filePath);
+                                            startActivityForResult(mUpdateBackgroundIntent, 3);
+
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
                                     }
                                 }
                             }
+
                         }
+                        break;
+                    case 7:
+                        if (resultCode == Activity.RESULT_OK) {
+                            Uri selectedImage = data.getData();
+                            String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
-                    }
-                    break;
-                case 7:
-                    if (resultCode == Activity.RESULT_OK) {
-                        Uri selectedImage = data.getData();
-                        String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-                        Cursor cursor = getActivity().getContentResolver().query(selectedImage,
-                                filePathColumn, null, null, null);
-                        cursor.moveToFirst();
-                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                        String picturePath = cursor.getString(columnIndex);
-                        cursor.close();
-                        Intent mUpdateBackgroundIntent = new Intent(getActivity(),
-                                UpdateBackgroundActivity
-                                        .class);
-                        mUpdateBackgroundIntent.putExtra("imageUri", picturePath);
-                        startActivityForResult(mUpdateBackgroundIntent, 3);
-                    }
-                    break;
+                            Cursor cursor = getActivity().getContentResolver().query(selectedImage,
+                                    filePathColumn, null, null, null);
+                            cursor.moveToFirst();
+                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                            String picturePath = cursor.getString(columnIndex);
+                            cursor.close();
+                            Intent mUpdateBackgroundIntent = new Intent(getActivity(),
+                                    UpdateBackgroundActivity
+                                            .class);
+                            mUpdateBackgroundIntent.putExtra("imageUri", picturePath);
+                            startActivityForResult(mUpdateBackgroundIntent, 3);
+                        }
+                        break;
+                }
+            } catch (Exception e) {
+                Log.e("ERROR", "FOCUS_LAUNCHER_ERROR");
+                e.printStackTrace();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

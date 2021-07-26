@@ -755,9 +755,9 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
 
                         if (uri != null && !TextUtils.isEmpty(uri.toString())) {
 
-                            if (uri.toString().contains("com.google.android.apps.photos.contentprovider")) {
-                                return;
-                            }
+//                            if (uri.toString().contains("com.google.android.apps.photos.contentprovider")) {
+//                                return;
+//                            }
 
                             if (uri.toString().contains("/storage")) {
                                 String[] storagepath = uri.toString().split("/storage");
