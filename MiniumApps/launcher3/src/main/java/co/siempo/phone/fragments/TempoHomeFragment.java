@@ -11,6 +11,7 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
@@ -230,14 +231,11 @@ public class TempoHomeFragment extends CoreFragment {
         switchNotification.setChecked(PrefSiempo.getInstance(getActivity()).read(PrefSiempo.DEFAULT_NOTIFICATION_ENABLE, true));
         switchNotification.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Switch sb = (Switch) v;
-                if(sb.isChecked())
-                {
+                if (sb.isChecked()) {
                     PrefSiempo.getInstance(getActivity()).write(PrefSiempo.DEFAULT_NOTIFICATION_ENABLE, true);
-                }else
-                {
+                } else {
                     PrefSiempo.getInstance(getActivity()).write(PrefSiempo.DEFAULT_NOTIFICATION_ENABLE, false);
                 }
                 AppUtils.notificationBarManaged(getActivity(), null);
@@ -246,23 +244,21 @@ public class TempoHomeFragment extends CoreFragment {
 
         switchScreenOverlay.setChecked(PrefSiempo.getInstance(getActivity()).read(PrefSiempo.DEFAULT_SCREEN_OVERLAY, false));
         switchScreenOverlay.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
 
-                                        Switch sb = (Switch) view;
-                                if(sb.isChecked())
-                                    {
-                                                checkPermissionsForSystemWindow();
+                Switch sb = (Switch) view;
+                if (sb.isChecked()) {
+                    checkPermissionsForSystemWindow();
 
-                                        }else
-                                {
-                                            PrefSiempo.getInstance(getActivity()).write(PrefSiempo.DEFAULT_SCREEN_OVERLAY, false);
-                                    Intent command = new Intent(getActivity(), ScreenFilterService.class);
-                                    command.putExtra(ScreenFilterService.BUNDLE_KEY_COMMAND, 1);
-                                    getActivity().startService(command);
-                                }
+                } else {
+                    PrefSiempo.getInstance(getActivity()).write(PrefSiempo.DEFAULT_SCREEN_OVERLAY, false);
+                    Intent command = new Intent(getActivity(), ScreenFilterService.class);
+                    command.putExtra(ScreenFilterService.BUNDLE_KEY_COMMAND, 1);
+                    getActivity().startService(command);
+                }
 
-                                    }
+            }
         });
 
     }
@@ -304,8 +300,7 @@ public class TempoHomeFragment extends CoreFragment {
 
     private void notificationVisibility() {
 
-        if (PrefSiempo.getInstance(getActivity()).read(PrefSiempo.DEFAULT_NOTIFICATION_ENABLE, true))
-        {
+        if (PrefSiempo.getInstance(getActivity()).read(PrefSiempo.DEFAULT_NOTIFICATION_ENABLE, true)) {
             View decorView = getActivity().getWindow().getDecorView();
             decorView.setFitsSystemWindows(false);
             decorView.setSystemUiVisibility(
@@ -315,8 +310,7 @@ public class TempoHomeFragment extends CoreFragment {
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        }else
-        {
+        } else {
             View decorView = getActivity().getWindow().getDecorView();
             decorView.setFitsSystemWindows(true);
         }
@@ -389,79 +383,82 @@ public class TempoHomeFragment extends CoreFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Intention screen Wallpaper selection
-        if(requestCode == 10 || requestCode == 7) {
-            switch (requestCode) {
-                case 10:
-                    if(resultCode== Activity.RESULT_OK){
-                        Uri uri=data.getData();
+        if (requestCode == 10 || requestCode == 7) {
+            try {
+                switch (requestCode) {
+                    case 10:
+                        if (resultCode == Activity.RESULT_OK) {
+                            Uri uri = data.getData();
 
-                        if(uri !=null && !TextUtils.isEmpty(uri.toString())){
+                            if (uri != null && !TextUtils.isEmpty(uri.toString())) {
+// For what reason this thing is here?
+//                                if (uri.toString().contains("com.google.android.apps.photos.contentprovider")) {
+//                                    return;
+//                                }
 
-                            if(uri.toString().contains("com.google.android.apps.photos.contentprovider")){
-                                return;
-                            }
-
-                            if(uri.toString().contains("/storage")){
-                                String[] storagepath=uri.toString().split("/storage");
-                                if(storagepath.length>1){
-                                    String filePath="/storage"+storagepath[1];
-                                    Intent mUpdateBackgroundIntent = new Intent(getActivity(),UpdateBackgroundActivity.class);
-                                    mUpdateBackgroundIntent.putExtra("imageUri", filePath);
-                                    startActivityForResult(mUpdateBackgroundIntent, 3);
-                                }
-                            }
-                            else{
-                                String id = DocumentsContract.getDocumentId(uri);
-
-                                if(!TextUtils.isEmpty(id) && uri!=null){
-
-                                    try {
-                                        InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);
-                                        File file = new File(getActivity().getCacheDir().getAbsolutePath()+"/"+id);
-                                        writeFile(inputStream, file);
-                                        String filePath = file.getAbsolutePath();
-
-                                        if(filePath.contains("raw:")){
-                                            String[] downloadPath=filePath.split("raw:");
-                                            if(downloadPath.length>1){
-                                                filePath =downloadPath[1];
-                                            }
-                                        }
-
-                                        Intent mUpdateBackgroundIntent = new Intent(getActivity(),UpdateBackgroundActivity.class);
+                                if (uri.toString().contains("/storage")) {
+                                    String[] storagepath = uri.toString().split("/storage");
+                                    if (storagepath.length > 1) {
+                                        String filePath = "/storage" + storagepath[1];
+                                        Intent mUpdateBackgroundIntent = new Intent(getActivity(), UpdateBackgroundActivity.class);
                                         mUpdateBackgroundIntent.putExtra("imageUri", filePath);
                                         startActivityForResult(mUpdateBackgroundIntent, 3);
+                                    }
+                                } else {
+                                    String id = uri.getLastPathSegment();
 
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
+                                    if (!TextUtils.isEmpty(id) && uri != null) {
+
+                                        try {
+                                            InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);
+                                            File file = new File(getActivity().getCacheDir(), id);
+                                            writeFile(inputStream, file);
+                                            String filePath = file.getAbsolutePath();
+
+                                            if (filePath.contains("raw:")) {
+                                                String[] downloadPath = filePath.split("raw:");
+                                                if (downloadPath.length > 1) {
+                                                    filePath = downloadPath[1];
+                                                }
+                                            }
+
+                                            Intent mUpdateBackgroundIntent = new Intent(getActivity(), UpdateBackgroundActivity.class);
+                                            mUpdateBackgroundIntent.putExtra("imageUri", filePath);
+                                            startActivityForResult(mUpdateBackgroundIntent, 3);
+
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
                                     }
                                 }
                             }
+
                         }
+                        break;
+                    case 7:
+                        if (resultCode == Activity.RESULT_OK) {
+                            Uri selectedImage = data.getData();
+                            String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
-                    }
-                    break;
-                case 7:
-                    if(resultCode == Activity.RESULT_OK){
-                        Uri selectedImage = data.getData();
-                        String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
-                        Cursor cursor = getActivity().getContentResolver().query(selectedImage,
-                                filePathColumn, null, null, null);
-                        cursor.moveToFirst();
-                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                        String picturePath = cursor.getString(columnIndex);
-                        cursor.close();
-                        Intent mUpdateBackgroundIntent = new Intent(getActivity(),
-                                UpdateBackgroundActivity
-                                        .class);
-                        mUpdateBackgroundIntent.putExtra("imageUri", picturePath);
-                        startActivityForResult(mUpdateBackgroundIntent, 3);
-                    }
-                    break;
+                            Cursor cursor = getActivity().getContentResolver().query(selectedImage,
+                                    filePathColumn, null, null, null);
+                            cursor.moveToFirst();
+                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                            String picturePath = cursor.getString(columnIndex);
+                            cursor.close();
+                            Intent mUpdateBackgroundIntent = new Intent(getActivity(),
+                                    UpdateBackgroundActivity
+                                            .class);
+                            mUpdateBackgroundIntent.putExtra("imageUri", picturePath);
+                            startActivityForResult(mUpdateBackgroundIntent, 3);
+                        }
+                        break;
+                }
+            } catch (Exception e) {
+                Log.e("ERROR", "FOCUS_LAUNCHER_ERROR");
+                e.printStackTrace();
             }
-        }
-        else{
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
@@ -473,23 +470,23 @@ public class TempoHomeFragment extends CoreFragment {
             out = new FileOutputStream(file);
             byte[] buf = new byte[1024];
             int len;
-            while((len=in.read(buf))>0){
-                out.write(buf,0,len);
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
-                if ( out != null ) {
+                if (out != null) {
                     out.close();
                 }
                 in.close();
-            } catch ( IOException e ) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
     @Click
     void relDarkTheme() {
         switchDarkTheme.performClick();
