@@ -13,9 +13,9 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.WindowManager;
 
-import co.siempo.phone.receivers.OrientationChangeReceiver;
+import io.focuslauncher.Receivers.OrientationChangeReceiver;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.service.ScreenFilterService;
 import co.siempo.phone.utils.NotificationUtils;
 

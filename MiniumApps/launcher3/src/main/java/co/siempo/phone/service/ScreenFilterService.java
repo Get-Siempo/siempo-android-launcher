@@ -12,7 +12,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.WindowManager;
 
-import co.siempo.phone.receivers.OrientationChangeReceiver;
+import io.focuslauncher.Receivers.OrientationChangeReceiver;
 import co.siempo.phone.screenfilter.ScreenFilterPresenter;
 import co.siempo.phone.screenfilter.ScreenManager;
 import co.siempo.phone.screenfilter.SettingsModel;

@@ -47,7 +47,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import co.siempo.phone.R;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.event.LocationUpdateEvent;
 import co.siempo.phone.event.StartLocationEvent;
@@ -58,6 +57,7 @@ import co.siempo.phone.utils.PermissionUtil;
 import co.siempo.phone.utils.PrefSiempo;
 import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
+import io.focuslauncher.R;
 
 import static co.siempo.phone.activities.DashboardActivity.IS_FROM_HOME;
 

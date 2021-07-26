@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.utils.PrefSiempo;
 
 

@@ -10,8 +10,6 @@ import android.net.Uri;
 
 import java.util.List;
 
-import co.siempo.phone.BuildConfig;
-import co.siempo.phone.R;
 import co.siempo.phone.activities.AlphaSettingsActivity_;
 import co.siempo.phone.activities.NoteListActivity;
 import co.siempo.phone.activities.SuppressNotificationActivity;
@@ -20,6 +18,7 @@ import co.siempo.phone.db.DBClient;
 import co.siempo.phone.launcher.FakeLauncherActivity;
 import co.siempo.phone.log.Tracer;
 import co.siempo.phone.utils.UIUtils;
+import io.focuslauncher.R;
 
 
 public class ActivityHelper {

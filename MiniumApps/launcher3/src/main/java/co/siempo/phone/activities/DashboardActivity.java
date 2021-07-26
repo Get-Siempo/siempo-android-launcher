@@ -49,8 +49,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.RejectedExecutionException;
 
-import co.siempo.phone.BuildConfig;
-import co.siempo.phone.R;
+import io.focuslauncher.BuildConfig;
+import io.focuslauncher.R;
 import co.siempo.phone.adapters.DashboardPagerAdapter;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.event.CheckVersionEvent;

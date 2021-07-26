@@ -19,7 +19,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.models.ImageItem;
 
 

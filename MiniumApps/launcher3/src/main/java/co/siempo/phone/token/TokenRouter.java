@@ -20,8 +20,8 @@ import org.androidannotations.annotations.EBean;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.siempo.phone.BuildConfig;
-import co.siempo.phone.R;
+import io.focuslauncher.BuildConfig;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.DashboardActivity;
 import co.siempo.phone.app.Constants;
 import co.siempo.phone.app.CoreApplication;

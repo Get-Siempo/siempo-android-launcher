@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 
 public class AgendaItemViewHolder extends RecyclerView.ViewHolder {
 

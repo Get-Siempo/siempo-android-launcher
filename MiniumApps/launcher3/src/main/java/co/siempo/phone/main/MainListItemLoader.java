@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.DashboardActivity;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.app.Launcher3App;

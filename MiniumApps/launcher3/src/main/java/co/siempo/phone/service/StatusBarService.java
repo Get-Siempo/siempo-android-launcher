@@ -68,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.AppAssignmentActivity;
 import co.siempo.phone.activities.DashboardActivity;
 import co.siempo.phone.activities.NoteListActivity;

@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.AppAssignmentActivity;
 import co.siempo.phone.activities.ToolSelectionActivity;
 import co.siempo.phone.app.Constants;

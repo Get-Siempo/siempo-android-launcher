@@ -32,7 +32,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.adapters.ToolPositioningAdapter;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.customviews.ItemOffsetDecoration;

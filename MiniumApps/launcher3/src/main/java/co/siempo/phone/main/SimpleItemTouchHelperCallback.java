@@ -25,7 +25,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.interfaces.ItemTouchHelperAdapter;
 import co.siempo.phone.interfaces.ItemTouchHelperViewHolder;
 import co.siempo.phone.utils.UIUtils;

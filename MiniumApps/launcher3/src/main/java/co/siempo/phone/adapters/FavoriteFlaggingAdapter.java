@@ -22,7 +22,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.FavoritesSelectionActivity;
 import co.siempo.phone.app.BitmapWorkerTask;
 import co.siempo.phone.app.CoreApplication;

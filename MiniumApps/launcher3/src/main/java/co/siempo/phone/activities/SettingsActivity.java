@@ -6,7 +6,7 @@ import android.view.View;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.fragments.AppMenuFragment;
 import co.siempo.phone.fragments.TempoSettingsFragment_;
 import co.siempo.phone.utils.PrefSiempo;

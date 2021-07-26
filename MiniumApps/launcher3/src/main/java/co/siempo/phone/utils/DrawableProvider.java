@@ -10,7 +10,7 @@ import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.util.TypedValue;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 
 /**
  * @author amulya

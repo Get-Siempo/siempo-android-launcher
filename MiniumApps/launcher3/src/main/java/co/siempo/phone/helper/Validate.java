@@ -7,7 +7,7 @@ import android.widget.EditText;
 
 import java.util.regex.Pattern;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 
 
 /**

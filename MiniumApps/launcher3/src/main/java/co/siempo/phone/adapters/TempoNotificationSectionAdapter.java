@@ -28,7 +28,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.adapters.viewholder.NoticationFooterViewHolder;
 import co.siempo.phone.adapters.viewholder.TempoNotificationHeaderViewHolder;
 import co.siempo.phone.adapters.viewholder.TempoNotificationItemViewHolder;

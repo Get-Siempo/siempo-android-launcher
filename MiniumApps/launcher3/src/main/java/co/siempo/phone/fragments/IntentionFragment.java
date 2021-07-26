@@ -43,7 +43,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.ContributeActivity;
 import co.siempo.phone.activities.DashboardActivity;
 import co.siempo.phone.activities.EnableTempoActivity;

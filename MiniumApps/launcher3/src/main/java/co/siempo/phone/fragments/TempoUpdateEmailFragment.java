@@ -33,7 +33,7 @@ import org.androidannotations.annotations.ViewById;
 import java.util.HashMap;
 import java.util.Map;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.models.UserModel;
 import co.siempo.phone.service.MailChimpOperation;

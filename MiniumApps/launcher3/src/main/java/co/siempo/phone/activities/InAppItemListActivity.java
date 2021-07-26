@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.adapters.SubscriptionItemAdapter;
 import co.siempo.phone.util.SkuDetails;
 import co.siempo.phone.util.SubscriptionUtil;

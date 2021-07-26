@@ -29,7 +29,7 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.app.Constants;
 import co.siempo.phone.utils.PermissionUtil;
 import co.siempo.phone.utils.UIUtils;

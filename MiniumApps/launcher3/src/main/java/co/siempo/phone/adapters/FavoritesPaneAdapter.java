@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.CoreActivity;
 import co.siempo.phone.activities.FavoriteAppsPositionActivity;
 import co.siempo.phone.app.CoreApplication;

@@ -30,7 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.JunkfoodFlaggingActivity;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.event.NotifyBottomView;

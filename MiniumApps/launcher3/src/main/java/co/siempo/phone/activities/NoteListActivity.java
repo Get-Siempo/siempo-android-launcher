@@ -34,7 +34,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.adapters.NoteAdapter;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.helper.FirebaseHelper;
