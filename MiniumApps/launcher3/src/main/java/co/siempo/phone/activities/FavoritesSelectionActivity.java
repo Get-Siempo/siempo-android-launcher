@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.adapters.FavoriteFlaggingAdapter;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.event.AppInstalledEvent;

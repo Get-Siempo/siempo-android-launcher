@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 
 
 /**

@@ -20,7 +20,7 @@ import org.greenrobot.greendao.database.Database;
 
 import java.util.ArrayList;
 
-import co.siempo.phone.BuildConfig;
+import io.focuslauncher.BuildConfig;
 import co.siempo.phone.db.DaoMaster;
 import co.siempo.phone.db.DaoSession;
 import co.siempo.phone.db.GreenDaoOpenHelper;

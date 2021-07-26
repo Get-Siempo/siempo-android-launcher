@@ -15,7 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.CoreActivity;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.log.Tracer;

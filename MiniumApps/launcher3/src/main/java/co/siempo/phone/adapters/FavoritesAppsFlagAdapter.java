@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 
 /**
  * Created by hardik on 16/8/17.

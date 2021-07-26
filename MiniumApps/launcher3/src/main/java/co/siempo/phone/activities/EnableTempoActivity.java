@@ -19,7 +19,7 @@ import com.gun0912.tedpermission.TedPermission;
 
 import java.util.ArrayList;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.utils.PackageUtil;
 import co.siempo.phone.utils.PermissionUtil;
 import co.siempo.phone.utils.UIUtils;

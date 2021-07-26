@@ -55,7 +55,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.app.Launcher3App;
 import co.siempo.phone.customviews.NotificationHelper;

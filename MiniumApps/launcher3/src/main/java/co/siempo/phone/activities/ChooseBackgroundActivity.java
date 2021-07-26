@@ -26,7 +26,7 @@ import java.util.Comparator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.adapters.BackgroundItemAdapter;
 import co.siempo.phone.models.ImageItem;
 import co.siempo.phone.utils.PermissionUtil;

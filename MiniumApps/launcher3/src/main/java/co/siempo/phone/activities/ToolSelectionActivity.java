@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.adapters.ToolsListAdapter;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.event.NotifyBottomView;

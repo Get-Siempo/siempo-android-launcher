@@ -19,7 +19,7 @@ import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.app.BitmapWorkerTask;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.helper.FirebaseHelper;

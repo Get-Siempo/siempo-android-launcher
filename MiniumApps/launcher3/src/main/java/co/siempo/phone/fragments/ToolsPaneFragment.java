@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.adapters.ToolsMenuAdapter;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.customviews.ItemOffsetDecoration;

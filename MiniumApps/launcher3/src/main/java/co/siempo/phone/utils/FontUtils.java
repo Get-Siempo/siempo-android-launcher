@@ -1,6 +1,6 @@
 package co.siempo.phone.utils;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 
 /**
  * Created by rajeshjadi on 6/2/18.

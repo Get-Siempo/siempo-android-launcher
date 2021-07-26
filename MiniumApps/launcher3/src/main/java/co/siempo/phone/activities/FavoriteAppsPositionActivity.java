@@ -27,7 +27,7 @@ import com.jaeger.library.StatusBarUtil;
 import java.io.File;
 import java.util.ArrayList;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.adapters.FavoritePositioningAdapter;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.customviews.ItemOffsetDecoration;

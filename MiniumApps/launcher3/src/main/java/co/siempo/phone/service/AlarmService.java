@@ -34,7 +34,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import co.siempo.phone.R;
 import co.siempo.phone.app.Constants;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.db.DBUtility;
@@ -47,6 +46,7 @@ import co.siempo.phone.utils.PackageUtil;
 import co.siempo.phone.utils.PrefSiempo;
 import co.siempo.phone.utils.Sorting;
 import co.siempo.phone.utils.UIUtils;
+import io.focuslauncher.R;
 
 import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_ID;
 

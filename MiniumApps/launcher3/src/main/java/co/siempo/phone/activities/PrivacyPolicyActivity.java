@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebView;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.helper.FirebaseHelper;
 
 /**

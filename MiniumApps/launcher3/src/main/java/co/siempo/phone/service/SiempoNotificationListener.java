@@ -38,7 +38,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import co.siempo.phone.R;
+import co.siempo.phone.receivers.PhoneCallReceiver;
+import io.focuslauncher.R;
 import co.siempo.phone.app.Constants;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.app.Launcher3App;
@@ -49,7 +50,6 @@ import co.siempo.phone.db.TableNotificationSmsDao;
 import co.siempo.phone.event.NewNotificationEvent;
 import co.siempo.phone.helper.FirebaseHelper;
 import co.siempo.phone.log.Tracer;
-import co.siempo.phone.receivers.PhoneCallReceiver;
 import co.siempo.phone.utils.NotificationUtility;
 import co.siempo.phone.utils.NotificationUtils;
 import co.siempo.phone.utils.PackageUtil;

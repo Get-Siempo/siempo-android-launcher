@@ -43,7 +43,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.adapters.viewholder.AppAssignmentAdapter;
 import co.siempo.phone.app.Constants;
 import co.siempo.phone.app.CoreApplication;

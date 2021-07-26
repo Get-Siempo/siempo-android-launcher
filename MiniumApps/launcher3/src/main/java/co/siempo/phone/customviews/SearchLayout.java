@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import com.eyeem.chips.BubbleStyle;
 import com.eyeem.chips.ChipsEditText;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.DashboardActivity;
 import co.siempo.phone.event.SearchLayoutEvent;
 import co.siempo.phone.token.TokenCompleteType;

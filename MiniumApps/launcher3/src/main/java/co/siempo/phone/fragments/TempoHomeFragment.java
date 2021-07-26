@@ -31,7 +31,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.ChooseBackgroundActivity;
 import co.siempo.phone.activities.CoreActivity;
 import co.siempo.phone.activities.UpdateBackgroundActivity;
