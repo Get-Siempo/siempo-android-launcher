@@ -195,14 +195,14 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
     }
 
     private void startAlarm() {
-         SharedPreferences preferences;
-         SharedPreferences.Editor[] editor;
+        SharedPreferences preferences;
+        SharedPreferences.Editor[] editor;
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String reminder_flag = preferences.getString("reminder_flag_new", "0");
-        if(reminder_flag.equals("0")) {
+        if (reminder_flag.equals("0")) {
             editor = new SharedPreferences.Editor[1];
             editor[0] = preferences.edit();
-            editor[0].putString("reminder_flag_new","1");
+            editor[0].putString("reminder_flag_new", "1");
             editor[0].apply();
             AlarmManager alarmManager = (AlarmManager) this.getSystemService(this.ALARM_SERVICE);
             long when = System.currentTimeMillis();         // notification time
@@ -211,21 +211,21 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
             //cal.add(Calendar.HOUR, 24);
             cal.add(Calendar.MINUTE, 3);
             Intent intent = new Intent(this, ReminderService.class);
-            intent.putExtra("title",getString(R.string.welcome_dialog_title));
-            intent.putExtra("body",getString(R.string.welcome_dialog_description));
-            intent.putExtra("type","0");
+            intent.putExtra("title", getString(R.string.welcome_dialog_title));
+            intent.putExtra("body", getString(R.string.welcome_dialog_description));
+            intent.putExtra("type", "0");
             PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, 0);
             alarmManager.set(AlarmManager.RTC, cal.getTimeInMillis(), pendingIntent);
 //
             cal = Calendar.getInstance();
-        //cal.add(Calendar.HOUR, 24);
-        cal.add(Calendar.DAY_OF_MONTH, 7);
-        Intent intent1 = new Intent(this, ReminderService.class);
-        intent1.putExtra("title","Congratulations on sticking with Siempo for a week!");
-        intent1.putExtra("body","Please considering contributing to Siempo if you have found the experience valuable.");
-        intent1.putExtra("type","1");
-        PendingIntent pendingIntent1 = PendingIntent.getService(this, 1, intent1, 0);
-        alarmManager.set(AlarmManager.RTC, cal.getTimeInMillis(), pendingIntent1);
+            //cal.add(Calendar.HOUR, 24);
+            cal.add(Calendar.DAY_OF_MONTH, 7);
+            Intent intent1 = new Intent(this, ReminderService.class);
+            intent1.putExtra("title", "Congratulations on sticking with Siempo for a week!");
+            intent1.putExtra("body", "Please considering contributing to Siempo if you have found the experience valuable.");
+            intent1.putExtra("type", "1");
+            PendingIntent pendingIntent1 = PendingIntent.getService(this, 1, intent1, 0);
+            alarmManager.set(AlarmManager.RTC, cal.getTimeInMillis(), pendingIntent1);
 //        cal = Calendar.getInstance();
 //        cal.set(2019, 5, 19);
 //        Intent intent2 = new Intent(this, ReminderService.class);
@@ -235,7 +235,7 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
 //        PendingIntent pendingIntent2 = PendingIntent.getService(this, 2, intent2, 0);
 //        alarmManager.set(AlarmManager.RTC, cal.getTimeInMillis(), pendingIntent2);
 
-          }
+        }
     }
 
     void connectInAppService() {
@@ -651,13 +651,12 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
     @Override
     public boolean onDoubleTapEvent(MotionEvent motionEvent) {
 //        Toast.makeText(getApplicationContext(), "DOUBLE TAP Event",Toast.LENGTH_SHORT).show();
-        if(motionEvent.getAction()==1)
-        {
-            if(PrefSiempo.getInstance(CoreActivity.this).read(PrefSiempo.IS_DND_ENABLE, false)) {
+        if (motionEvent.getAction() == 1) {
+            if (PrefSiempo.getInstance(CoreActivity.this).read(PrefSiempo.IS_DND_ENABLE, false)) {
                 changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_NONE);
             }
 
-            if(PrefSiempo.getInstance(CoreActivity.this).read(PrefSiempo.IS_SLEEP_ENABLE, false)) {
+            if (PrefSiempo.getInstance(CoreActivity.this).read(PrefSiempo.IS_SLEEP_ENABLE, false)) {
                 sleep();
             }
         }
@@ -665,7 +664,7 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(MotionEvent event) {
         this.gestureDetector.onTouchEvent(event);
         return super.onTouchEvent(event);
     }
@@ -738,8 +737,7 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
     }
 
 
-
-    public void showWallPaperSelection(){
+    public void showWallPaperSelection() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent, 10);
@@ -749,46 +747,45 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Intention screen Wallpaper selection
-        if(requestCode == 10 || requestCode == 7) {
+        if (requestCode == 10 || requestCode == 7) {
             switch (requestCode) {
                 case 10:
-                    if(resultCode== Activity.RESULT_OK){
-                        Uri uri=data.getData();
+                    if (resultCode == Activity.RESULT_OK) {
+                        Uri uri = data.getData();
 
-                        if(uri !=null && !TextUtils.isEmpty(uri.toString())){
+                        if (uri != null && !TextUtils.isEmpty(uri.toString())) {
 
-                            if(uri.toString().contains("com.google.android.apps.photos.contentprovider")){
+                            if (uri.toString().contains("com.google.android.apps.photos.contentprovider")) {
                                 return;
                             }
 
-                            if(uri.toString().contains("/storage")){
-                                String[] storagepath=uri.toString().split("/storage");
-                                if(storagepath.length>1){
-                                    String filePath="/storage"+storagepath[1];
-                                    Intent mUpdateBackgroundIntent = new Intent(this,UpdateBackgroundActivity.class);
+                            if (uri.toString().contains("/storage")) {
+                                String[] storagepath = uri.toString().split("/storage");
+                                if (storagepath.length > 1) {
+                                    String filePath = "/storage" + storagepath[1];
+                                    Intent mUpdateBackgroundIntent = new Intent(this, UpdateBackgroundActivity.class);
                                     mUpdateBackgroundIntent.putExtra("imageUri", filePath);
                                     startActivityForResult(mUpdateBackgroundIntent, 3);
                                 }
-                            }
-                            else{
-                                String id = DocumentsContract.getDocumentId(uri);
+                            } else {
+                                String id = uri.getLastPathSegment();
 
-                                if(!TextUtils.isEmpty(id) && uri!=null){
+                                if (!TextUtils.isEmpty(id) && uri != null) {
 
                                     try {
                                         InputStream inputStream = this.getContentResolver().openInputStream(uri);
-                                        File file = new File(this.getCacheDir().getAbsolutePath()+"/"+id);
+                                        File file = new File(this.getCacheDir(), id);
                                         writeFile(inputStream, file);
                                         String filePath = file.getAbsolutePath();
 
-                                        if(filePath.contains("raw:")){
-                                            String[] downloadPath=filePath.split("raw:");
-                                            if(downloadPath.length>1){
-                                                filePath =downloadPath[1];
+                                        if (filePath.contains("raw:")) {
+                                            String[] downloadPath = filePath.split("raw:");
+                                            if (downloadPath.length > 1) {
+                                                filePath = downloadPath[1];
                                             }
                                         }
 
-                                        Intent mUpdateBackgroundIntent = new Intent(this,UpdateBackgroundActivity.class);
+                                        Intent mUpdateBackgroundIntent = new Intent(this, UpdateBackgroundActivity.class);
                                         mUpdateBackgroundIntent.putExtra("imageUri", filePath);
                                         startActivityForResult(mUpdateBackgroundIntent, 3);
 
@@ -802,9 +799,9 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
                     }
                     break;
                 case 7:
-                    if(resultCode == Activity.RESULT_OK){
+                    if (resultCode == Activity.RESULT_OK) {
                         Uri selectedImage = data.getData();
-                        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                        String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
                         Cursor cursor = getContentResolver().query(selectedImage,
                                 filePathColumn, null, null, null);
@@ -820,11 +817,10 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
                     }
                     break;
             }
-            }
-            else{
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
-            }
         }
+    }
 
 
     void writeFile(InputStream in, File file) {
@@ -833,19 +829,18 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
             out = new FileOutputStream(file);
             byte[] buf = new byte[1024];
             int len;
-            while((len=in.read(buf))>0){
-                out.write(buf,0,len);
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
-                if ( out != null ) {
+                if (out != null) {
                     out.close();
                 }
                 in.close();
-            } catch ( IOException e ) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -875,7 +870,7 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
     }
 
     public void changeInterruptionFiler(int interruptionFilter) {
-        if(checkNotificationAccessGranted(true)) {
+        if (checkNotificationAccessGranted(true)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 mNotificationManager.setInterruptionFilter(interruptionFilter);
             }
@@ -888,10 +883,10 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
         ComponentName adminReceiver = new ComponentName(CoreActivity.this,
                 ScreenOffAdminReceiver.class);
         boolean admin = policyManager.isAdminActive(adminReceiver);
-        if(onlyAccessCheck) {
+        if (onlyAccessCheck) {
             return admin;
         } else {
-            if(!admin) {
+            if (!admin) {
                 // ask for device administration rights
                 Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
                 ComponentName mDeviceAdmin = new ComponentName(CoreActivity.this, ScreenOffAdminReceiver.class);
@@ -908,7 +903,7 @@ public abstract class CoreActivity extends AppCompatActivity implements NFCInter
         DevicePolicyManager policyManager = (DevicePolicyManager) CoreActivity.this
                 .getSystemService(Context.DEVICE_POLICY_SERVICE);
 
-        if(checkDeviceAdminAccessGranted(true)) {
+        if (checkDeviceAdminAccessGranted(true)) {
             policyManager.lockNow();
         }
     }
