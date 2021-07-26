@@ -2,6 +2,7 @@ package co.siempo.phone.service;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -22,6 +23,8 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
 import android.provider.ContactsContract;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.ArrayMap;
@@ -87,6 +90,7 @@ import co.siempo.phone.main.MainListItemLoader;
 import co.siempo.phone.models.AppMenu;
 import co.siempo.phone.models.MainListItem;
 import co.siempo.phone.utils.CategoryUtils;
+import co.siempo.phone.utils.NotificationUtils;
 import co.siempo.phone.utils.PackageUtil;
 import co.siempo.phone.utils.PrefSiempo;
 import co.siempo.phone.utils.UIUtils;
@@ -169,6 +173,7 @@ public class StatusBarService extends Service {
     private LinearLayout lnrTimeTop;
     private LinearLayout lnrSettingsNoteTop;
     private LinearLayout lnrWellnessTop;
+    private NotificationUtils notificationUtils;
 
     public StatusBarService() {
     }
@@ -177,6 +182,7 @@ public class StatusBarService extends Service {
     public void onCreate() {
         super.onCreate();
         context = this;
+        notificationUtils = new NotificationUtils(context);
         storeCurrentDate();
         EventBus.getDefault().register(this);
         registerObserverForContact();
@@ -417,14 +423,20 @@ public class StatusBarService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Notification.Builder builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
-                    .setContentTitle(getString(R.string.app_name))
-                    .setContentText("")
-                    .setPriority(Notification.PRIORITY_LOW)
-                    .setAutoCancel(true);
-            Notification notification = builder.build();
-            startForeground(Constants.STATUSBAR_SERVICE_ID, notification);
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                notificationUtils.createChannels();
+                NotificationCompat.Builder newBuilder = new NotificationCompat.Builder(this, ANDROID_CHANNEL_ID)
+                        .setContentTitle(getString(R.string.app_name))
+                        .setContentText("")
+                        .setPriority(NotificationManagerCompat.IMPORTANCE_LOW)
+                        .setCategory(Context.NOTIFICATION_SERVICE)
+                        .setAutoCancel(true);
+                Notification newNotification = newBuilder.build();
+                startForeground(Constants.STATUSBAR_SERVICE_ID, newNotification);
+            }
+        } catch (Throwable e) {
+            Log.e("Notifications", "Couldn't start StatusBarService foreground", e);
         }
 
         return START_STICKY;
@@ -2430,7 +2442,7 @@ public class StatusBarService extends Service {
                             if (map.get(MainListItemLoader.TOOLS_WELLNESS).getApplicationName().equalsIgnoreCase("")) {
                                 MainListItem item = new MainListItem(MainListItemLoader.TOOLS_WELLNESS, context.getResources()
                                         .getString(R.string.title_wellness), R.drawable
-                                        .ic_vector_wellness,CategoryUtils.HEALTH_FITNESS);
+                                        .ic_vector_wellness, CategoryUtils.HEALTH_FITNESS);
                                 Intent intent = new Intent(context, AppAssignmentActivity.class);
                                 intent.putExtra(Constants.INTENT_MAINLISTITEM, item);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -3177,7 +3189,7 @@ public class StatusBarService extends Service {
             } else if (map.get(MainListItemLoader.TOOLS_NOTES).getApplicationName().equalsIgnoreCase("")) {
                 MainListItem item = new MainListItem(MainListItemLoader.TOOLS_NOTES, context.getResources()
                         .getString(R.string.title_note), R.drawable
-                        .ic_vector_note,CategoryUtils.PRODUCTIVITY);
+                        .ic_vector_note, CategoryUtils.PRODUCTIVITY);
                 Intent intent = new Intent(context, AppAssignmentActivity.class);
                 intent.putExtra(Constants.INTENT_MAINLISTITEM, item);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
