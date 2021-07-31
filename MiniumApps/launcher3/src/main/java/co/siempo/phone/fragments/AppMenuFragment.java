@@ -234,7 +234,6 @@ public class AppMenuFragment extends CoreFragment implements View.OnClickListene
                 break;
             case R.id.relReduceOveruseFlagged:
                 requestUsageStatsPermission();
-                mRelOverUseFlaggedApp.setClickable(false);
                 break;
             default:
                 break;
@@ -245,16 +244,16 @@ public class AppMenuFragment extends CoreFragment implements View.OnClickListene
         if (!hasUsageStatsPermission(getActivity())) {
             startActivityForResult(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS), 100);
         } else {
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                if (!Settings.canDrawOverlays(context)) {
-//                    if (null == overlayDialogPermission || !overlayDialogPermission.isShowing())
-//                        showOverLayForDrawingPermission();
-//                } else {
-//                    showDialog();
-//                }
-//            } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!Settings.canDrawOverlays(context)) {
+                    if (null == overlayDialogPermission || !overlayDialogPermission.isShowing())
+                        showOverLayForDrawingPermission();
+                } else {
+                    showDialog();
+                }
+            } else {
             showDialog();
-//            }
+            }
         }
     }
 
@@ -264,16 +263,16 @@ public class AppMenuFragment extends CoreFragment implements View.OnClickListene
             if (!UIUtils.hasUsageStatsPermission(getActivity())) {
                 Toast.makeText(getActivity(), R.string.msg_control_access, Toast.LENGTH_SHORT).show();
             } else {
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                    if (!Settings.canDrawOverlays(context)) {
-//                        if (null == overlayDialogPermission || !overlayDialogPermission.isShowing())
-//                            showOverLayForDrawingPermission();
-//                    } else {
-//                        showDialog();
-//                    }
-//                } else {
-                showDialog();
-//                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (!Settings.canDrawOverlays(context)) {
+                        if (null == overlayDialogPermission || !overlayDialogPermission.isShowing())
+                            showOverLayForDrawingPermission();
+                    } else {
+                        showDialog();
+                    }
+                } else {
+                    showDialog();
+                }
             }
         } else if (requestCode == 1000) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
