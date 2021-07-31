@@ -309,9 +309,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name="co.siempo.phone.activities.EmailRequestActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="co.siempo.phone.activities.EnableTempoActivity"
             android:screenOrientation="portrait" />
         <activity
