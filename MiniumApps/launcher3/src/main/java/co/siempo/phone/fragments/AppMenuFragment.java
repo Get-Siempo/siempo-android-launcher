@@ -111,7 +111,7 @@ public class AppMenuFragment extends CoreFragment implements View.OnClickListene
             txtOverUseFlag = String.format(getResources().getString(R.string
                     .reduce_overuse_Flagged_description_setting), "<font " +
                     "color='#42A4FF'>" + deter_after_list[1] + "</font>");
-        }else if (deterTime == 2) {
+        } else if (deterTime == 2) {
             txtOverUseFlag = String.format(getResources().getString(R.string
                     .reduce_overuse_Flagged_description_setting), "<font " +
                     "color='#42A4FF'>" + deter_after_list[2] + "</font>");
@@ -156,7 +156,9 @@ public class AppMenuFragment extends CoreFragment implements View.OnClickListene
         switchJunkFoodmize.setChecked(CoreApplication.getInstance().isRandomize());
 
         switchOveruseFlagged = view.findViewById(R.id.switchOveruseFlagged);
-        if (index == -1) {
+        if (index == -1
+                || !hasUsageStatsPermission(getActivity())
+                || !hasDrawOverlayPermission()) {
             switchOveruseFlagged.setChecked(false);
         } else {
             switchOveruseFlagged.setChecked(true);
@@ -192,6 +194,14 @@ public class AppMenuFragment extends CoreFragment implements View.OnClickListene
             mRelOverUseFlaggedApp.setBackground(null);
         }
 
+    }
+
+    public boolean hasDrawOverlayPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return Settings.canDrawOverlays(getActivity());
+        } else {
+            return true;
+        }
     }
 
     @Override
@@ -252,7 +262,7 @@ public class AppMenuFragment extends CoreFragment implements View.OnClickListene
                     showDialog();
                 }
             } else {
-            showDialog();
+                showDialog();
             }
         }
     }
