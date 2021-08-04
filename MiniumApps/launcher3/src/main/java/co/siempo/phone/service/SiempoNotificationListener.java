@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.os.Looper;
 import android.os.UserHandle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -57,6 +59,7 @@ import co.siempo.phone.utils.UIUtils;
 import de.greenrobot.event.EventBus;
 
 import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_ID;
+import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_NAME;
 
 /**
  * Created by Shahab on 5/16/2017.
@@ -108,6 +111,7 @@ public class SiempoNotificationListener extends NotificationListenerService {
     public void onCreate() {
         super.onCreate();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannel(ANDROID_CHANNEL_ID, ANDROID_CHANNEL_NAME);
             Notification.Builder builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
                     .setContentTitle(getString(R.string.app_name))
                     .setContentText("")
@@ -116,6 +120,17 @@ public class SiempoNotificationListener extends NotificationListenerService {
             Notification notification = builder.build();
             startForeground(Constants.NOTIFICIONLISTENER_SERVICE_ID, notification);
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private String createNotificationChannel(String channelId, String channelName){
+        NotificationChannel chan = new NotificationChannel(channelId,
+                channelName, NotificationManager.IMPORTANCE_NONE);
+        chan.setLightColor(Color.BLUE);
+        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        NotificationManager service = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        service.createNotificationChannel(chan);
+        return channelId;
     }
 
     @Override

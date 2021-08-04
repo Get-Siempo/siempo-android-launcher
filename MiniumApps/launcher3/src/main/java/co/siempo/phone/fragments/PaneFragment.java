@@ -62,7 +62,7 @@ import co.siempo.phone.R;
 import co.siempo.phone.activities.CoreActivity;
 import co.siempo.phone.activities.DashboardActivity;
 import co.siempo.phone.activities.JunkfoodFlaggingActivity;
-import co.siempo.phone.activities.SettingsActivity_;
+import co.siempo.phone.activities.SettingsActivity;
 import co.siempo.phone.adapters.MainListAdapter;
 import co.siempo.phone.adapters.PanePagerAdapter;
 import co.siempo.phone.adapters.ToolsMenuAdapter;
@@ -1232,7 +1232,7 @@ public class PaneFragment extends CoreFragment {
                 btnLater.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), SettingsActivity_.class);
+                        Intent intent = new Intent(getActivity(), SettingsActivity.class);
                         intent.putExtra("FlagApp", true);
                         startActivity(intent);
                     }

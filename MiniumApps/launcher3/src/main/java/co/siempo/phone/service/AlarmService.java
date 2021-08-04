@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.text.format.DateUtils;
@@ -48,6 +49,7 @@ import co.siempo.phone.utils.Sorting;
 import co.siempo.phone.utils.UIUtils;
 
 import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_ID;
+import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_NAME;
 
 /**
  * Created by rajeshjadi on 8/1/18.
@@ -80,6 +82,7 @@ public class AlarmService extends IntentService {
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
+                createNotificationChannel(ANDROID_CHANNEL_ID, ANDROID_CHANNEL_NAME);
                 Notification.Builder builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
                         .setContentTitle(getString(R.string.app_name))
                         .setContentText("")
@@ -91,6 +94,17 @@ public class AlarmService extends IntentService {
                 e.printStackTrace();
             }
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private String createNotificationChannel(String channelId, String channelName){
+        NotificationChannel chan = new NotificationChannel(channelId,
+                channelName, NotificationManager.IMPORTANCE_NONE);
+        chan.setLightColor(Color.BLUE);
+        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        NotificationManager service = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        service.createNotificationChannel(chan);
+        return channelId;
     }
 
     @Override

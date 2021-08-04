@@ -10,6 +10,7 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -89,10 +90,12 @@
         android:supportsRtl="true"
         android:theme="@style/SiempoAppTheme"
         tools:ignore="AllowBackup"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
         tools:replace="android:allowBackup">
         <service
             android:name=".service.CategoriesApp"
-            android:exported="false"></service>
+            android:exported="false"/>
         <!-- Fabric configuration -->
         <meta-data
             android:name="io.fabric.ApiKey"

@@ -2,6 +2,8 @@ package co.siempo.phone.service;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,6 +14,7 @@ import android.content.res.Configuration;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.location.Location;
@@ -22,6 +25,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
 import android.provider.ContactsContract;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.ArrayMap;
@@ -94,6 +98,7 @@ import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
 
 import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_ID;
+import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_NAME;
 
 /**
  * This background service used for detect torch status and feature used for any other background status.
@@ -418,6 +423,7 @@ public class StatusBarService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelId = createNotificationChannel(ANDROID_CHANNEL_ID, ANDROID_CHANNEL_NAME);
             Notification.Builder builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
                     .setContentTitle(getString(R.string.app_name))
                     .setContentText("")
@@ -428,6 +434,17 @@ public class StatusBarService extends Service {
         }
 
         return START_STICKY;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private String createNotificationChannel(String channelId, String channelName){
+        NotificationChannel chan = new NotificationChannel(channelId,
+                channelName, NotificationManager.IMPORTANCE_NONE);
+        chan.setLightColor(Color.BLUE);
+        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        NotificationManager service = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        service.createNotificationChannel(chan);
+        return channelId;
     }
 
     /**
