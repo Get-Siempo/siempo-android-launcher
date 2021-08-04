@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 
 /**
  * Created by Shahab on 2/16/2017.

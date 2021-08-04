@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 
 
 /**

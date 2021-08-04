@@ -13,7 +13,7 @@ android {
         ignoreWarnings true
     }
     defaultConfig {
-        applicationId "co.siempo.phone"
+        applicationId "io.focuslauncher"
         minSdkVersion 21
         targetSdkVersion 30
         multiDexEnabled true
@@ -166,4 +166,4 @@ greendao {
 //}
 
 // ADD THIS AT THE BOTTOM
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'

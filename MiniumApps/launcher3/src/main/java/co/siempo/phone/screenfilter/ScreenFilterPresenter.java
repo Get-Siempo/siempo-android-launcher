@@ -13,10 +13,11 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.WindowManager;
 
-import co.siempo.phone.receivers.OrientationChangeReceiver;
+import io.focuslauncher.Receivers.OrientationChangeReceiver;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.service.ScreenFilterService;
+import co.siempo.phone.utils.NotificationUtils;
 
 public class ScreenFilterPresenter implements OrientationChangeReceiver.OnOrientationChangeListener,
         SettingsModel.OnSettingsChangedListener {
@@ -39,6 +40,7 @@ public class ScreenFilterPresenter implements OrientationChangeReceiver.OnOrient
     public Notification.Builder mNotificationBuilder;
     private FilterCommandFactory mFilterCommandFactory;
     private FilterCommandParser mFilterCommandParser;
+    private NotificationUtils mNotificationUtils;
 
     private boolean mShuttingDown = false;
     private boolean mScreenFilterOpen = false;
@@ -69,6 +71,7 @@ public class ScreenFilterPresenter implements OrientationChangeReceiver.OnOrient
         mNotificationBuilder = notificationBuilder;
         mFilterCommandFactory = filterCommandFactory;
         mFilterCommandParser = filterCommandParser;
+        mNotificationUtils = new NotificationUtils(context);
     }
 
     private void refreshForegroundNotification() {
@@ -116,7 +119,12 @@ public class ScreenFilterPresenter implements OrientationChangeReceiver.OnOrient
                 .setColor(0xFF91a7ff)
                 .setPriority(Notification.PRIORITY_MIN);
 
-        mServiceController.startForeground(NOTIFICATION_ID, mNotificationBuilder.build());
+        try {
+            mNotificationUtils.createChannels();
+            mServiceController.startForeground(NOTIFICATION_ID, mNotificationBuilder.build());
+        }catch (Throwable e) {
+            Log.e("Notifications", "Couldn't start ScreenFilterService foreground", e);
+        }
     }
 
     public void onScreenFilterCommand(Intent command) {

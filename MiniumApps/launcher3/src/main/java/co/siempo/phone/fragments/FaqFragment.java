@@ -9,7 +9,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.helper.FirebaseHelper;
 
 /**

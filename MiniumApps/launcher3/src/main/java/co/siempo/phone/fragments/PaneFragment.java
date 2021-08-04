@@ -58,7 +58,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.CoreActivity;
 import co.siempo.phone.activities.DashboardActivity;
 import co.siempo.phone.activities.JunkfoodFlaggingActivity;

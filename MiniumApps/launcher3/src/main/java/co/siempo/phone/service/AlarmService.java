@@ -35,7 +35,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import co.siempo.phone.R;
 import co.siempo.phone.app.Constants;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.db.DBUtility;
@@ -43,10 +42,12 @@ import co.siempo.phone.db.TableNotificationSms;
 import co.siempo.phone.db.TableNotificationSmsDao;
 import co.siempo.phone.log.Tracer;
 import co.siempo.phone.models.CustomNotification;
+import co.siempo.phone.utils.NotificationUtils;
 import co.siempo.phone.utils.PackageUtil;
 import co.siempo.phone.utils.PrefSiempo;
 import co.siempo.phone.utils.Sorting;
 import co.siempo.phone.utils.UIUtils;
+import io.focuslauncher.R;
 
 import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_ID;
 import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_NAME;
@@ -66,6 +67,7 @@ public class AlarmService extends IntentService {
     private ArrayList<Integer> everyTwoHourList = new ArrayList<>();
     private ArrayList<Integer> everyFourHoursList = new ArrayList<>();
     private Vibrator vibrator;
+    private NotificationUtils notificationUtils;
 
     public AlarmService() {
         super("MyServerOrWhatever");
@@ -80,6 +82,7 @@ public class AlarmService extends IntentService {
     public void onCreate() {
         super.onCreate();
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        notificationUtils = new NotificationUtils(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
                 createNotificationChannel(ANDROID_CHANNEL_ID, ANDROID_CHANNEL_NAME);
@@ -89,9 +92,10 @@ public class AlarmService extends IntentService {
                         .setPriority(Notification.PRIORITY_LOW)
                         .setAutoCancel(true);
                 Notification notification = builder.build();
+                notificationUtils.createChannels();
                 startForeground(Constants.ALARM_SERVICE_ID, notification);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Throwable e) {
+                Log.e("Notifications", "Couldn't start AlarmService foreground", e);
             }
         }
     }

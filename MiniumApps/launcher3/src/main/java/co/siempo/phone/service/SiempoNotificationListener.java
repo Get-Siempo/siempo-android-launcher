@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,7 +19,6 @@ import android.os.Looper;
 import android.os.UserHandle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -40,7 +38,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import co.siempo.phone.R;
+import co.siempo.phone.receivers.PhoneCallReceiver;
+import io.focuslauncher.R;
 import co.siempo.phone.app.Constants;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.app.Launcher3App;
@@ -51,15 +50,14 @@ import co.siempo.phone.db.TableNotificationSmsDao;
 import co.siempo.phone.event.NewNotificationEvent;
 import co.siempo.phone.helper.FirebaseHelper;
 import co.siempo.phone.log.Tracer;
-import co.siempo.phone.receivers.PhoneCallReceiver;
 import co.siempo.phone.utils.NotificationUtility;
+import co.siempo.phone.utils.NotificationUtils;
 import co.siempo.phone.utils.PackageUtil;
 import co.siempo.phone.utils.PrefSiempo;
 import co.siempo.phone.utils.UIUtils;
 import de.greenrobot.event.EventBus;
 
 import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_ID;
-import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_NAME;
 
 /**
  * Created by Shahab on 5/16/2017.
@@ -80,6 +78,7 @@ public class SiempoNotificationListener extends NotificationListenerService {
     Context context;
     ArrayList<String> enableNotificationList = new ArrayList<>();
     Set<String> blockedAppList = new HashSet<>();
+    NotificationUtils notificationUtils;
     int volumeLevel = 1;
 
     CountDownTimer countDownTimer;
@@ -110,27 +109,20 @@ public class SiempoNotificationListener extends NotificationListenerService {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createNotificationChannel(ANDROID_CHANNEL_ID, ANDROID_CHANNEL_NAME);
-            Notification.Builder builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
-                    .setContentTitle(getString(R.string.app_name))
-                    .setContentText("")
-                    .setPriority(Notification.PRIORITY_LOW)
-                    .setAutoCancel(true);
-            Notification notification = builder.build();
-            startForeground(Constants.NOTIFICIONLISTENER_SERVICE_ID, notification);
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                Notification.Builder builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
+                        .setContentTitle(getString(R.string.app_name))
+                        .setContentText("")
+                        .setPriority(Notification.PRIORITY_LOW)
+                        .setAutoCancel(true);
+                Notification notification = builder.build();
+                notificationUtils.createChannels();
+                startForeground(Constants.NOTIFICIONLISTENER_SERVICE_ID, notification);
+            }
+        } catch (Throwable e) {
+            Log.e("Notifications", "Couldn't start SiempoNotificationListener foreground", e);
         }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private String createNotificationChannel(String channelId, String channelName){
-        NotificationChannel chan = new NotificationChannel(channelId,
-                channelName, NotificationManager.IMPORTANCE_NONE);
-        chan.setLightColor(Color.BLUE);
-        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-        NotificationManager service = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        service.createNotificationChannel(chan);
-        return channelId;
     }
 
     @Override

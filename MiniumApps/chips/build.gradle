@@ -51,7 +51,7 @@ group = "com.eyeem.chips"
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 30
     buildToolsVersion '28.0.3'
 
     buildTypes {

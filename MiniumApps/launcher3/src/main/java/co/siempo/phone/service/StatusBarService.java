@@ -2,7 +2,6 @@ package co.siempo.phone.service;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -14,7 +13,6 @@ import android.content.res.Configuration;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.location.Location;
@@ -25,7 +23,8 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
 import android.provider.ContactsContract;
-import android.support.annotation.RequiresApi;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.ArrayMap;
@@ -69,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.AppAssignmentActivity;
 import co.siempo.phone.activities.DashboardActivity;
 import co.siempo.phone.activities.NoteListActivity;
@@ -91,6 +90,7 @@ import co.siempo.phone.main.MainListItemLoader;
 import co.siempo.phone.models.AppMenu;
 import co.siempo.phone.models.MainListItem;
 import co.siempo.phone.utils.CategoryUtils;
+import co.siempo.phone.utils.NotificationUtils;
 import co.siempo.phone.utils.PackageUtil;
 import co.siempo.phone.utils.PrefSiempo;
 import co.siempo.phone.utils.UIUtils;
@@ -98,7 +98,6 @@ import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
 
 import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_ID;
-import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_NAME;
 
 /**
  * This background service used for detect torch status and feature used for any other background status.
@@ -174,6 +173,7 @@ public class StatusBarService extends Service {
     private LinearLayout lnrTimeTop;
     private LinearLayout lnrSettingsNoteTop;
     private LinearLayout lnrWellnessTop;
+    private NotificationUtils notificationUtils;
 
     public StatusBarService() {
     }
@@ -182,6 +182,7 @@ public class StatusBarService extends Service {
     public void onCreate() {
         super.onCreate();
         context = this;
+        notificationUtils = new NotificationUtils(context);
         storeCurrentDate();
         EventBus.getDefault().register(this);
         registerObserverForContact();
@@ -422,29 +423,23 @@ public class StatusBarService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String channelId = createNotificationChannel(ANDROID_CHANNEL_ID, ANDROID_CHANNEL_NAME);
-            Notification.Builder builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
-                    .setContentTitle(getString(R.string.app_name))
-                    .setContentText("")
-                    .setPriority(Notification.PRIORITY_LOW)
-                    .setAutoCancel(true);
-            Notification notification = builder.build();
-            startForeground(Constants.STATUSBAR_SERVICE_ID, notification);
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                notificationUtils.createChannels();
+                NotificationCompat.Builder newBuilder = new NotificationCompat.Builder(this, ANDROID_CHANNEL_ID)
+                        .setContentTitle(getString(R.string.app_name))
+                        .setContentText("")
+                        .setPriority(NotificationManagerCompat.IMPORTANCE_LOW)
+                        .setCategory(Context.NOTIFICATION_SERVICE)
+                        .setAutoCancel(true);
+                Notification newNotification = newBuilder.build();
+                startForeground(Constants.STATUSBAR_SERVICE_ID, newNotification);
+            }
+        } catch (Throwable e) {
+            Log.e("Notifications", "Couldn't start StatusBarService foreground", e);
         }
 
         return START_STICKY;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private String createNotificationChannel(String channelId, String channelName){
-        NotificationChannel chan = new NotificationChannel(channelId,
-                channelName, NotificationManager.IMPORTANCE_NONE);
-        chan.setLightColor(Color.BLUE);
-        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-        NotificationManager service = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        service.createNotificationChannel(chan);
-        return channelId;
     }
 
     /**
@@ -2447,7 +2442,7 @@ public class StatusBarService extends Service {
                             if (map.get(MainListItemLoader.TOOLS_WELLNESS).getApplicationName().equalsIgnoreCase("")) {
                                 MainListItem item = new MainListItem(MainListItemLoader.TOOLS_WELLNESS, context.getResources()
                                         .getString(R.string.title_wellness), R.drawable
-                                        .ic_vector_wellness,CategoryUtils.HEALTH_FITNESS);
+                                        .ic_vector_wellness, CategoryUtils.HEALTH_FITNESS);
                                 Intent intent = new Intent(context, AppAssignmentActivity.class);
                                 intent.putExtra(Constants.INTENT_MAINLISTITEM, item);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -3194,7 +3189,7 @@ public class StatusBarService extends Service {
             } else if (map.get(MainListItemLoader.TOOLS_NOTES).getApplicationName().equalsIgnoreCase("")) {
                 MainListItem item = new MainListItem(MainListItemLoader.TOOLS_NOTES, context.getResources()
                         .getString(R.string.title_note), R.drawable
-                        .ic_vector_note,CategoryUtils.PRODUCTIVITY);
+                        .ic_vector_note, CategoryUtils.PRODUCTIVITY);
                 Intent intent = new Intent(context, AppAssignmentActivity.class);
                 intent.putExtra(Constants.INTENT_MAINLISTITEM, item);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

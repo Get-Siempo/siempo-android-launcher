@@ -39,8 +39,8 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 
-import co.siempo.phone.BuildConfig;
-import co.siempo.phone.R;
+import io.focuslauncher.BuildConfig;
+import io.focuslauncher.R;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.app.Launcher3App;
 

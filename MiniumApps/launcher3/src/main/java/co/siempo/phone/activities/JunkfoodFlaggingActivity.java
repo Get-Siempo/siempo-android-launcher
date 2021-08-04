@@ -43,7 +43,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.adapters.JunkfoodFlaggingAdapter;
 import co.siempo.phone.app.Constants;
 import co.siempo.phone.app.CoreApplication;

@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.helper.FirebaseHelper;
 import co.siempo.phone.service.MailChimpOperation;

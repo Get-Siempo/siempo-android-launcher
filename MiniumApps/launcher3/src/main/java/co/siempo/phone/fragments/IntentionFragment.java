@@ -43,7 +43,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.ContributeActivity;
 import co.siempo.phone.activities.DashboardActivity;
 import co.siempo.phone.activities.EnableTempoActivity;
@@ -118,7 +118,6 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
             //mWindow.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             //mWindow.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
         }
-
 
 
 //        boolean isEnable = PrefSiempo.getInstance(getActivity()).read(PrefSiempo
@@ -337,7 +336,7 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
                             mPopupWindow.dismiss();
                             if (permissionUtil.hasGiven(PermissionUtil.NOTIFICATION_ACCESS)
                                     /*&& permissionUtil.hasGiven(PermissionUtil.CALL_PHONE_PERMISSION)*/
-                                    && PackageUtil.isSiempoLauncher(context)  &&
+                                    && PackageUtil.isSiempoLauncher(context) &&
                                     UIUtils.hasUsageStatsPermission(context)) {
                                 TypedValue typedValue = new TypedValue();
                                 Resources.Theme theme = context.getTheme();
@@ -423,15 +422,14 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser &&  getActivity() != null)
-        {
+        if (isVisibleToUser && getActivity() != null) {
             AppUtils.notificationBarManaged(getActivity(), null);
-            ((DashboardActivity)getActivity()).changeLayoutBackground(-1);
+            ((DashboardActivity) getActivity()).changeLayoutBackground(-1);
             AppUtils.statusbarColor0(getActivity(), 1);
         }
     }
 
-    public void showWallPaperSelection(){
+    public void showWallPaperSelection() {
         final BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(getActivity());
         View sheetView = getActivity().getLayoutInflater().inflate(R.layout.shortcuts_wallpaper, null);
         mBottomSheetDialog.setContentView(sheetView);
@@ -469,14 +467,13 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
             public void onClick(View view) {
                 mBottomSheetDialog.dismiss();
                 int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                Log.e("permissionCheck","permissionCheck "+permissionCheck);
-                if(permissionCheck == -1){
+                Log.e("permissionCheck", "permissionCheck " + permissionCheck);
+                if (permissionCheck == -1) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                                 MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
                     }
-                }else
-                {
+                } else {
                     openBrowser();
                 }
             }
@@ -504,8 +501,8 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
     }
 
     private String isDuplicatePath = "";
-    private void openBrowser()
-    {
+
+    private void openBrowser() {
         isDuplicatePath = "";
         setMediaObserver();
         Intent i = new Intent(Intent.ACTION_VIEW);
@@ -519,7 +516,7 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
                 new ContentObserver(new Handler()) {
                     @Override
                     public void onChange(boolean selfChange) {
-                        Log.d("your_tag","External Media has been changed3");
+                        Log.d("your_tag", "External Media has been changed3");
                         super.onChange(selfChange);
 
                         Long timestamp = readLastDateFromMediaStore(context, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -527,23 +524,20 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
                         // comapare with your stored last value and do what you need to do
 
                         String path = "blank";
-                        if(mime.toLowerCase().contains("image"))
-                        {
+                        if (mime.toLowerCase().contains("image")) {
                             path = readLastPathFromMediaStore(context, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                         }
 
-                        if(!path.equalsIgnoreCase("blank"))
-                        {
-                            if(!isDuplicatePath.equalsIgnoreCase(path))
-                            {
+                        if (!path.equalsIgnoreCase("blank")) {
+                            if (!isDuplicatePath.equalsIgnoreCase(path)) {
                                 isDuplicatePath = path;
 
-                                Intent mUpdateBackgroundIntent = new Intent(getActivity(),UpdateBackgroundActivity.class);
+                                Intent mUpdateBackgroundIntent = new Intent(getActivity(), UpdateBackgroundActivity.class);
                                 mUpdateBackgroundIntent.putExtra("imageUri", path);
                                 startActivityForResult(mUpdateBackgroundIntent, 3);
                             }
 
-                            Log.e("lastImage","lastImage timestemp3 "+timestamp+" mime "+mime+" path = "+path);
+                            Log.e("lastImage", "lastImage timestemp3 " + timestamp + " mime " + mime + " path = " + path);
                         }
 
                     }
@@ -555,7 +549,7 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
     private Long readLastDateFromMediaStore(Context context, Uri uri) {
         Cursor cursor = context.getContentResolver().query(uri, null, null, null, "date_added DESC");
 
-        Long dateAdded =-1l;
+        Long dateAdded = -1l;
         if (cursor.moveToNext()) {
             dateAdded = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATE_ADDED));
         }
@@ -568,7 +562,7 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
 
         String mime = "";
         if (cursor.moveToNext()) {
-            mime= cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.MIME_TYPE));
+            mime = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.MIME_TYPE));
         }
         cursor.close();
         return mime;
@@ -578,12 +572,12 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
         Cursor cursor = context.getContentResolver().query(uri, null, null, null, "date_added DESC");
 
         String displayName = "";
-        String[] column = { MediaStore.Images.Media.DATA };
+        String[] column = {MediaStore.Images.Media.DATA};
 
         int columnIndex = cursor.getColumnIndex(column[0]);
 
         if (cursor.moveToFirst()) {
-            displayName= cursor.getString(columnIndex);
+            displayName = cursor.getString(columnIndex);
         }
         cursor.close();
         return displayName;
@@ -593,50 +587,49 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        switch (requestCode){
+        switch (requestCode) {
             case 100:
-                if(resultCode == Activity.RESULT_OK){
+                if (resultCode == Activity.RESULT_OK) {
                     imgTempo.performClick();
                 }
                 break;
             case 10:
-                if(resultCode==Activity.RESULT_OK){
-                    Uri uri=data.getData();
+                if (resultCode == Activity.RESULT_OK) {
+                    Uri uri = data.getData();
 
-                    if(uri !=null && !TextUtils.isEmpty(uri.toString())){
+                    if (uri != null && !TextUtils.isEmpty(uri.toString())) {
 
-                        if(uri.toString().contains("com.google.android.apps.photos.contentprovider")){
-                            return;
-                        }
+//                        if (uri.toString().contains("com.google.android.apps.photos.contentprovider")) {
+//                            return;
+//                        }
 
-                        if(uri.toString().contains("/storage")){
-                            String[] storagepath=uri.toString().split("/storage");
-                            if(storagepath.length>1){
-                                String filePath="/storage"+storagepath[1];
-                                Intent mUpdateBackgroundIntent = new Intent(getActivity(),UpdateBackgroundActivity.class);
+                        if (uri.toString().contains("/storage")) {
+                            String[] storagepath = uri.toString().split("/storage");
+                            if (storagepath.length > 1) {
+                                String filePath = "/storage" + storagepath[1];
+                                Intent mUpdateBackgroundIntent = new Intent(getActivity(), UpdateBackgroundActivity.class);
                                 mUpdateBackgroundIntent.putExtra("imageUri", filePath);
                                 startActivityForResult(mUpdateBackgroundIntent, 3);
                             }
-                        }
-                        else{
-                            String id = DocumentsContract.getDocumentId(uri);
+                        } else {
+                            String id = uri.getLastPathSegment();
 
-                            if(!TextUtils.isEmpty(id) && uri!=null){
+                            if (!TextUtils.isEmpty(id) && uri != null) {
 
                                 try {
                                     InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);
-                                    File file = new File(getActivity().getCacheDir().getAbsolutePath()+"/"+id);
+                                    File file = new File(getActivity().getCacheDir(), id);
                                     writeFile(inputStream, file);
                                     String filePath = file.getAbsolutePath();
 
-                                    if(filePath.contains("raw:")){
-                                        String[] downloadPath=filePath.split("raw:");
-                                        if(downloadPath.length>1){
-                                            filePath =downloadPath[1];
+                                    if (filePath.contains("raw:")) {
+                                        String[] downloadPath = filePath.split("raw:");
+                                        if (downloadPath.length > 1) {
+                                            filePath = downloadPath[1];
                                         }
                                     }
 
-                                    Intent mUpdateBackgroundIntent = new Intent(getActivity(),UpdateBackgroundActivity.class);
+                                    Intent mUpdateBackgroundIntent = new Intent(getActivity(), UpdateBackgroundActivity.class);
                                     mUpdateBackgroundIntent.putExtra("imageUri", filePath);
                                     startActivityForResult(mUpdateBackgroundIntent, 3);
 
@@ -650,9 +643,9 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
                 }
                 break;
             case 7:
-                if(resultCode == Activity.RESULT_OK){
+                if (resultCode == Activity.RESULT_OK) {
                     Uri selectedImage = data.getData();
-                    String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
                     Cursor cursor = getActivity().getContentResolver().query(selectedImage,
                             filePathColumn, null, null, null);
@@ -677,19 +670,18 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
             out = new FileOutputStream(file);
             byte[] buf = new byte[1024];
             int len;
-            while((len=in.read(buf))>0){
-                out.write(buf,0,len);
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
-                if ( out != null ) {
+                if (out != null) {
                     out.close();
                 }
                 in.close();
-            } catch ( IOException e ) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

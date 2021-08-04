@@ -11,8 +11,8 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
-import co.siempo.phone.BuildConfig;
-import co.siempo.phone.R;
+import io.focuslauncher.BuildConfig;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.CoreActivity;
 import co.siempo.phone.helper.ActivityHelper;
 import co.siempo.phone.utils.PrefSiempo;

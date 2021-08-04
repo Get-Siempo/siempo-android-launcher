@@ -20,7 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 
 /**
  * Created by roma on 23/4/18.

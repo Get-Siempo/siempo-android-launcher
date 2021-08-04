@@ -10,7 +10,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 
 /**
  * This screen is use to display privacy policy which is load from assets folder.

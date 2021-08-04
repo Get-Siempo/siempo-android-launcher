@@ -45,8 +45,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import co.siempo.phone.BuildConfig;
-import co.siempo.phone.R;
+import io.focuslauncher.BuildConfig;
+import io.focuslauncher.R;
 import co.siempo.phone.event.AppInstalledEvent;
 import co.siempo.phone.log.Tracer;
 import co.siempo.phone.models.AppMenu;
@@ -308,11 +308,11 @@ public abstract class CoreApplication extends MultiDexApplication {
         setRandomize(PrefSiempo.getInstance(sInstance).read(PrefSiempo.IS_RANDOMIZE_JUNKFOOD, true));
 
 
-        /**
-         * Fetch Category App List
-         */
-        Intent intent = new Intent(this, CategoriesApp.class);
-        startService(intent);
+//        /**
+//         * Fetch Category App List
+//         */
+//        Intent intent = new Intent(this, CategoriesApp.class);
+//        startService(intent);
 
     }
 

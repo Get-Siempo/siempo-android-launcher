@@ -8,7 +8,7 @@ import com.gun0912.tedpermission.TedPermission;
 
 import java.util.ArrayList;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.helper.FirebaseHelper;
 import co.siempo.phone.main.MainFragmentMediator;
 import co.siempo.phone.token.TokenItem;

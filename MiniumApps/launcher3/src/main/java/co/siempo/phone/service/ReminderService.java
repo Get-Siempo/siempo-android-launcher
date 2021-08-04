@@ -10,7 +10,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.ChooseBackgroundActivity;
 import co.siempo.phone.activities.ContributeActivity;
 import co.siempo.phone.activities.DashboardActivity;

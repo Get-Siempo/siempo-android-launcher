@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.utils.PrefSiempo;
 
 public class AppUtils

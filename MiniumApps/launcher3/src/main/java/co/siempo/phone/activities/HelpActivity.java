@@ -3,7 +3,7 @@ package co.siempo.phone.activities;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.fragments.HelpFragment;
 import co.siempo.phone.helper.FirebaseHelper;
 

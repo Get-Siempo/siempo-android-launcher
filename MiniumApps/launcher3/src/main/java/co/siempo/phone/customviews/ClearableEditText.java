@@ -14,7 +14,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 
 
 public class ClearableEditText extends AppCompatEditText implements TextWatcher {

@@ -32,7 +32,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.event.NotifyBackgroundChange;
 import co.siempo.phone.event.NotifyBackgroundToService;
 import co.siempo.phone.utils.PermissionUtil;
@@ -83,8 +83,7 @@ public class UpdateBackgroundActivity extends CoreActivity {
 
         boolean isVisible = PrefSiempo.getInstance(this).read(PrefSiempo.IS_ASK_HINT, false);
 
-        if(!isVisible)
-        {
+        if (!isVisible) {
             hintLayout.setVisibility(View.VISIBLE);
             hintLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,7 +92,7 @@ public class UpdateBackgroundActivity extends CoreActivity {
                     hintLayout.setVisibility(View.GONE);
                 }
             });
-        }else{
+        } else {
             hintLayout.setVisibility(View.GONE);
         }
 
@@ -103,16 +102,14 @@ public class UpdateBackgroundActivity extends CoreActivity {
         }
     }
 
-    private void checkPermissionAndDisplay(final Context context, final String strImage)
-    {
+    private void checkPermissionAndDisplay(final Context context, final String strImage) {
         if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !permissionUtil.hasGiven
                 (PermissionUtil.WRITE_EXTERNAL_STORAGE_PERMISSION))) {
             try {
                 TedPermission.with(context)
                         .setPermissionListener(new PermissionListener() {
                             @Override
-                            public void onPermissionGranted()
-                            {
+                            public void onPermissionGranted() {
                                 displayImageAsPhoto(strImage);
                             }
 
@@ -134,8 +131,7 @@ public class UpdateBackgroundActivity extends CoreActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else
-        {
+        } else {
             displayImageAsPhoto(strImage);
         }
     }
@@ -158,14 +154,12 @@ public class UpdateBackgroundActivity extends CoreActivity {
                     }
 
                     @Override
-                    public boolean onResourceReady(GlideDrawable resource, Uri model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource)
-                    {
+                    public boolean onResourceReady(GlideDrawable resource, Uri model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
                         mAttacher.update();
                         return false;
                     }
                 }).into(photoView);
     }
-
 
 
     @Override
@@ -190,13 +184,12 @@ public class UpdateBackgroundActivity extends CoreActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void setWall()
-    {
+    private void setWall() {
         photoView.buildDrawingCache();
         Bitmap bitmap = photoView.getDrawingCache();
-        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/"+getString(R.string.app_name)+"_"+System.currentTimeMillis()+".png";
+        String path = new File(getExternalFilesDir(null), "/" + getString(R.string.app_name) + "_" + System.currentTimeMillis() + ".png").getAbsolutePath();
         OutputStream out = null;
-        File file=new File(path);
+        File file = new File(path);
         try {
             out = new FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
@@ -207,7 +200,7 @@ public class UpdateBackgroundActivity extends CoreActivity {
             e.printStackTrace();
         } finally {
             strImage = file.getPath();
-            Log.e("strImage ","new strImage "+strImage);
+            Log.e("strImage ", "new strImage " + strImage);
             PrefSiempo.getInstance(UpdateBackgroundActivity.this).write(PrefSiempo
                     .DEFAULT_BAG, strImage);
             PrefSiempo.getInstance(UpdateBackgroundActivity.this).write(PrefSiempo.DEFAULT_BAG_ENABLE, true);

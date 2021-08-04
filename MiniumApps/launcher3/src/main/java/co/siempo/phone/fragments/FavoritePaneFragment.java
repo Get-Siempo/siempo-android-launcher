@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.activities.FavoritesSelectionActivity;
 import co.siempo.phone.adapters.FavoritesPaneAdapter;
 import co.siempo.phone.app.CoreApplication;

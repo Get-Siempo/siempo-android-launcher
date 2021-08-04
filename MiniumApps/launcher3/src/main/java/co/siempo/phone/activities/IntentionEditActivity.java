@@ -29,7 +29,7 @@ import android.widget.TextView;
 import android.widget.Toolbar;
 import android.widget.ViewFlipper;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.customviews.LockEditText;
 import co.siempo.phone.helper.FirebaseHelper;
 import co.siempo.phone.utils.PrefSiempo;

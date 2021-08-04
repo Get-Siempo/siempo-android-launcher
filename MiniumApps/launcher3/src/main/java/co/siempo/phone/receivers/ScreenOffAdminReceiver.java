@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 
 /**
  * Receiver class which shows notifications when the Device Administrator status

@@ -34,7 +34,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Locale;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.helper.FirebaseHelper;
 import co.siempo.phone.log.Tracer;

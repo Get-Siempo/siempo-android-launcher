@@ -11,7 +11,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 
-import co.siempo.phone.R;
+import io.focuslauncher.R;
 import co.siempo.phone.app.CoreApplication;
 import co.siempo.phone.log.Tracer;
 import co.siempo.phone.utils.UIUtils;
