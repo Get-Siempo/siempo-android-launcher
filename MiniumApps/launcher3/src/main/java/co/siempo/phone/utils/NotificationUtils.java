@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 
 import io.focuslauncher.R;
 
@@ -73,6 +75,17 @@ public class NotificationUtils extends ContextWrapper {
         }
         return builder;
 
+    }
+
+    public Notification getForeGroundNotification(){
+        NotificationCompat.Builder newBuilder = new NotificationCompat.Builder(this, ANDROID_CHANNEL_ID)
+                .setContentTitle(getString(R.string.app_name))
+                .setContentText("")
+                .setPriority(NotificationManagerCompat.IMPORTANCE_LOW)
+                .setCategory(Context.NOTIFICATION_SERVICE)
+                .setAutoCancel(true);
+        Notification newNotification = newBuilder.build();
+        return newNotification;
     }
 
 }

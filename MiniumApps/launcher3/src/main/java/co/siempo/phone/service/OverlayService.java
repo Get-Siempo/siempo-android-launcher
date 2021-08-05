@@ -20,6 +20,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import co.siempo.phone.app.Constants;
+import co.siempo.phone.utils.NotificationUtils;
 import io.focuslauncher.R;
 
 /**
@@ -46,6 +48,7 @@ public class OverlayService extends Service {
     private WindowManager.LayoutParams paramsBottom;
     private WindowManager.LayoutParams paramsTop;
 
+    private NotificationUtils notificationUtils;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -56,6 +59,9 @@ public class OverlayService extends Service {
     public void onCreate() {
         super.onCreate();
         try {
+            notificationUtils = new NotificationUtils(this);
+            notificationUtils.createChannels();
+            startForeground(Constants.STATUSBAR_SERVICE_ID, notificationUtils.getForeGroundNotification());
             bottomView = ((LayoutInflater) getSystemService(Context
                     .LAYOUT_INFLATER_SERVICE)).inflate(R.layout
                     .gray_scale_layout, null);

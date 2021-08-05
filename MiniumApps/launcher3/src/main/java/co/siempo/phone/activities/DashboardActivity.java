@@ -242,7 +242,10 @@ public class DashboardActivity extends CoreActivity {
         if (PrefSiempo.getInstance(DashboardActivity.this).read(PrefSiempo.DEFAULT_SCREEN_OVERLAY, false)) {
             Intent command = new Intent(DashboardActivity.this, ScreenFilterService.class);
             command.putExtra(ScreenFilterService.BUNDLE_KEY_COMMAND, 0);
-            startService(command);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                startForegroundService(command);
+            else
+                startService(command);
         }
     }
 
@@ -725,7 +728,11 @@ public class DashboardActivity extends CoreActivity {
             //overlayDialog.setCancelable(false);
             overlayDialog.setCanceledOnTouchOutside(false);
             if (null != mPager && mPager.getCurrentItem() == 1) {
-                overlayDialog.show();
+                try {
+                    overlayDialog.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             Button btnEnable = overlayDialog.findViewById(R.id.btnEnable);

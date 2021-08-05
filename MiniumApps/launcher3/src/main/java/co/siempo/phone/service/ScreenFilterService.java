@@ -7,16 +7,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.view.WindowManager;
 
+import co.siempo.phone.utils.NotificationUtils;
+import io.focuslauncher.R;
 import io.focuslauncher.Receivers.OrientationChangeReceiver;
 import co.siempo.phone.screenfilter.ScreenFilterPresenter;
 import co.siempo.phone.screenfilter.ScreenManager;
 import co.siempo.phone.screenfilter.SettingsModel;
 import co.siempo.phone.screenfilter.*;
+
+import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_ID;
 
 public class ScreenFilterService extends Service implements ServiceLifeCycleController {
     public static final int VALID_COMMAND_START = 0;
@@ -33,13 +40,24 @@ public class ScreenFilterService extends Service implements ServiceLifeCycleCont
     private ScreenFilterPresenter mPresenter;
     private SettingsModel mSettingsModel;
     private OrientationChangeReceiver mOrientationReceiver;
-
+    private NotificationUtils notificationUtils;
     @Override
     public void onCreate() {
         super.onCreate();
-
+        notificationUtils = new NotificationUtils(this);
         if (DEBUG) Log.i(TAG, "onCreate");
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationUtils.createChannels();
+            NotificationCompat.Builder newBuilder = new NotificationCompat.Builder(this, ANDROID_CHANNEL_ID)
+                    .setContentTitle(getString(R.string.app_name))
+                    .setContentText("")
+                    .setPriority(NotificationManagerCompat.IMPORTANCE_LOW)
+                    .setCategory(Context.NOTIFICATION_SERVICE)
+                    .setAutoCancel(true);
+            Notification newNotification = newBuilder.build();
+            startForeground(ScreenFilterPresenter.NOTIFICATION_ID, newNotification);
+        }
         // Initialize helpers and managers
         Context context = this;
         WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
