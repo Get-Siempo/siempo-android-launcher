@@ -99,7 +99,10 @@ public class IntentionFragment extends CoreFragment implements View.OnClickListe
         context = getActivity();
         permissionUtil = new PermissionUtil(context);
         Intent myService = new Intent(getActivity(), StatusBarService.class);
-        getActivity().startService(myService);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            getActivity().startForegroundService(myService);
+        else
+            getActivity().startService(myService);
         initView(view);
 
 

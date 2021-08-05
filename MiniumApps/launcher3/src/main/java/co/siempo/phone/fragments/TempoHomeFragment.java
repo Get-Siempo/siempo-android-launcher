@@ -255,7 +255,10 @@ public class TempoHomeFragment extends CoreFragment {
                     PrefSiempo.getInstance(getActivity()).write(PrefSiempo.DEFAULT_SCREEN_OVERLAY, false);
                     Intent command = new Intent(getActivity(), ScreenFilterService.class);
                     command.putExtra(ScreenFilterService.BUNDLE_KEY_COMMAND, 1);
-                    getActivity().startService(command);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                        getActivity().startForegroundService(command);
+                    else
+                        getActivity().startService(command);
                 }
 
             }
@@ -274,7 +277,10 @@ public class TempoHomeFragment extends CoreFragment {
                                 PrefSiempo.getInstance(getActivity()).write(PrefSiempo.DEFAULT_SCREEN_OVERLAY, true);
                                 Intent command = new Intent(getActivity(), ScreenFilterService.class);
                                 command.putExtra(ScreenFilterService.BUNDLE_KEY_COMMAND, 0);
-                                getActivity().startService(command);
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                                    getActivity().startForegroundService(command);
+                                else
+                                    getActivity().startService(command);
                             }
 
                             @Override
@@ -293,7 +299,10 @@ public class TempoHomeFragment extends CoreFragment {
             PrefSiempo.getInstance(getActivity()).write(PrefSiempo.DEFAULT_SCREEN_OVERLAY, true);
             Intent command = new Intent(getActivity(), ScreenFilterService.class);
             command.putExtra(ScreenFilterService.BUNDLE_KEY_COMMAND, 0);
-            getActivity().startService(command);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                getActivity().startForegroundService(command);
+            else
+                getActivity().startService(command);
         }
     }
 

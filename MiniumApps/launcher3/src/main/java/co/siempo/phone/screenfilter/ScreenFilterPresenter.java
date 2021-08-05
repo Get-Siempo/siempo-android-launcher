@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Build;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.WindowManager;
@@ -19,12 +21,15 @@ import io.focuslauncher.R;
 import co.siempo.phone.service.ScreenFilterService;
 import co.siempo.phone.utils.NotificationUtils;
 
+import static co.siempo.phone.app.Constants.STATUSBAR_SERVICE_ID;
+import static co.siempo.phone.utils.NotificationUtils.ANDROID_CHANNEL_ID;
+
 public class ScreenFilterPresenter implements OrientationChangeReceiver.OnOrientationChangeListener,
         SettingsModel.OnSettingsChangedListener {
     private static final String TAG = "ScreenFilterPresenter";
     private static final boolean DEBUG = true;
 
-    private static final int NOTIFICATION_ID = 1;
+    public static final int NOTIFICATION_ID = 1;
     private static final int REQUEST_CODE_ACTION_SETTINGS = 1000;
     private static final int REQUEST_CODE_ACTION_STOP = 2000;
     private static final int REQUEST_CODE_ACTION_PAUSE_OR_RESUME = 3000;
@@ -112,16 +117,19 @@ public class ScreenFilterPresenter implements OrientationChangeReceiver.OnOrient
 //        PendingIntent settingsPI = PendingIntent.getActivity(context, REQUEST_CODE_ACTION_SETTINGS,
 //                shadesActivityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        mNotificationBuilder = new Notification.Builder(mContext);
-        mNotificationBuilder.setSmallIcon(R.drawable.siempo_notification_icon)
-                .setContentTitle(title)
+        NotificationCompat.Builder newBuilder = new NotificationCompat.Builder(mContext, ANDROID_CHANNEL_ID)
+                .setSmallIcon(R.drawable.siempo_notification_icon)
+                .setContentTitle(context.getString(R.string.app_name))
                 .setContentText("Focus launcher with screen covers is running!!!")
+                .setPriority(NotificationManagerCompat.IMPORTANCE_LOW)
+                .setCategory(Context.NOTIFICATION_SERVICE)
                 .setColor(0xFF91a7ff)
-                .setPriority(Notification.PRIORITY_MIN);
+                .setAutoCancel(true);
+        Notification newNotification = newBuilder.build();
 
         try {
             mNotificationUtils.createChannels();
-            mServiceController.startForeground(NOTIFICATION_ID, mNotificationBuilder.build());
+            mServiceController.startForeground(NOTIFICATION_ID, newNotification);
         }catch (Throwable e) {
             Log.e("Notifications", "Couldn't start ScreenFilterService foreground", e);
         }
