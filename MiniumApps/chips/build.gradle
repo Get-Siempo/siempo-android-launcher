@@ -1,56 +1,57 @@
-//buildscript {
-//    repositories {
-//        maven {
-//            url 'https://oss.sonatype.org/content/repositories/snapshots/'
-//        }
-//        mavenCentral()
-//        mavenLocal()
-//    }
-//    dependencies {
-//        classpath 'com.android.tools.build:gradle:2.3.0-beta1'
-//    }
-//}
-//
-//apply plugin: 'com.android.library'
-//
-//dependencies {
-//    repositories {
-//        maven {
-//            url 'https://oss.sonatype.org/content/repositories/snapshots/'
-//        }
-//        mavenCentral()
-//        mavenLocal()
-//    }
-//
-//    compile 'io.reactivex:rxandroid:0.24.0'
-//    //testCompile 'junit:junit:4.10'
-//    //testCompile 'org.robolectric:robolectric:2.1.+'
-//    //testCompile 'com.squareup:fest-android:1.0.+'
-//}
-//
-//android {
-//    compileSdkVersion rootProject.ext.compileSdkVersion
-//    buildToolsVersion rootProject.ext.buildToolsVersion
-//
-//    lintOptions {
-//        disable 'GoogleAppIndexingApiWarning','IconDensities','Registered','MissingTranslation','SetTextI18n','RtlHardcoded','SelectableText','PermissionImpliesUnsupportedHardware'
-//        ignoreWarnings true
-//    }
-//}
-//
-//// SONATYPE DEPLOYMENT
-//// in order to deploy, run: gradle uploadArchives
-//
-//apply plugin: 'maven'
-//apply plugin: 'signing'
-//
-//version = "0.9.6-SNAPSHOT"
-//group = "com.eyeem.chips"
+buildscript {
+    repositories {
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
+        mavenCentral()
+        mavenLocal()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.2'
+    }
+}
+
+apply plugin: 'com.android.library'
+
+dependencies {
+    repositories {
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
+        mavenCentral()
+        mavenLocal()
+    }
+
+    // implementation 'io.reactivex:rxandroid:0.24.0'
+    //testCompile 'junit:junit:4.10'
+    //testCompile 'org.robolectric:robolectric:2.1.+'
+    //testCompile 'com.squareup:fest-android:1.0.+'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    lintOptions {
+        disable 'GoogleAppIndexingApiWarning','IconDensities','Registered','MissingTranslation','SetTextI18n','RtlHardcoded','SelectableText','PermissionImpliesUnsupportedHardware'
+        ignoreWarnings true
+    }
+}
+
+// SONATYPE DEPLOYMENT
+// in order to deploy, run: gradle uploadArchives
+
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+version = "0.9.6-SNAPSHOT"
+group = "com.eyeem.chips"
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 30
     buildToolsVersion '28.0.3'
 
     buildTypes {
@@ -66,9 +67,10 @@ android {
 }
 
 repositories {
+    google()
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
 
 dependencies {
-    implementation 'io.reactivex:rxandroid:0.24.0'
+    implementation 'io.reactivex:rxandroid:1.1.0'
 }
