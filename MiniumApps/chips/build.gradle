@@ -52,7 +52,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '29.0.2'
 
     buildTypes {
         release {
