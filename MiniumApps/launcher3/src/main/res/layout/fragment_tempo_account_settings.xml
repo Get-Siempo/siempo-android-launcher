@@ -32,7 +32,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="50dp"
-                    tools:ignore="RtlSymmetry">
+                    tools:ignore="RtlSymmetry"
+                    android:visibility="gone">
 
 
                     <co.siempo.phone.customviews.RobotoRegularTextView
